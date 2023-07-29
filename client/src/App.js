@@ -1,7 +1,10 @@
+import Axios from 'axios'
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ToggleButton from 'react-bootstrap/ToggleButton';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import './App.css';
 
 function App() {
@@ -12,15 +15,34 @@ function App() {
   const [affiliation, setAffiliation] = useState(null)
 
   const addPersonnel = () => {
-    console.log(firstName)
-    console.log(lastName)
-    console.log(gender)
-    console.log(species)
-    console.log(affiliation)
+    Axios.post('http://localhost:3001/create', {
+      first_name: firstName,
+      last_name: lastName,
+      gender: gender,
+      species: species,
+      affiliation: affiliation
+    }).then(() => {
+      console.log("Success!")
+    });
   };
 
   return (
     <div>
+      <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+        <ToggleButton id="tbg-radio-1" value={1}>
+          Create
+        </ToggleButton>
+        <ToggleButton id="tbg-radio-2" value={2}>
+          Read
+        </ToggleButton>
+        <ToggleButton id="tbg-radio-3" value={3}>
+          Update
+        </ToggleButton>
+        <ToggleButton id="tbg-radio-4" value={4}>
+          Destroy
+        </ToggleButton>
+      </ToggleButtonGroup>
+
       <Form.Label>First Name</Form.Label>
       <Form.Control
         onChange={(event) => {
