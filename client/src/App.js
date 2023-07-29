@@ -1,28 +1,28 @@
-import Axios from 'axios'
-import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import ToggleButton from 'react-bootstrap/ToggleButton';
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
-import './App.css';
+import Axios from "axios";
+import Form from "react-bootstrap/Form";
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import "bootstrap/dist/css/bootstrap.min.css";
+import ToggleButton from "react-bootstrap/ToggleButton";
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
+import "./App.css";
 
 function App() {
-  const [firstName, setFirstName] = useState(null)
-  const [lastName, setLastName] = useState(null)
-  const [gender, setGender] = useState(null)
-  const [species, setSpecies] = useState(null)
-  const [affiliation, setAffiliation] = useState(null)
+  const [firstName, setFirstName] = useState(null);
+  const [lastName, setLastName] = useState(null);
+  const [gender, setGender] = useState(null);
+  const [species, setSpecies] = useState(null);
+  const [affiliation, setAffiliation] = useState(null);
 
   const addPersonnel = () => {
-    Axios.post('http://localhost:3001/create', {
+    Axios.post("http://localhost:3001/create", {
       first_name: firstName,
       last_name: lastName,
       gender: gender,
       species: species,
-      affiliation: affiliation
+      affiliation: affiliation,
     }).then(() => {
-      console.log("Success!")
+      console.log("Success!");
     });
   };
 
@@ -42,33 +42,39 @@ function App() {
           Destroy
         </ToggleButton>
       </ToggleButtonGroup>
-
       <Form.Label>First Name</Form.Label>
       <Form.Control
         onChange={(event) => {
-          setFirstName(event.target.value)
-        }}/>
+          setFirstName(event.target.value);
+        }}
+      />
       <Form.Label>Last Name</Form.Label>
       <Form.Control
         onChange={(event) => {
-          setLastName(event.target.value)
-        }}/>
+          setLastName(event.target.value);
+        }}
+      />
       <Form.Label>Gender</Form.Label>
       <Form.Control
         onChange={(event) => {
-          setGender(event.target.value)
-        }}/>
+          setGender(event.target.value);
+        }}
+      />
       <Form.Label>Species</Form.Label>
       <Form.Control
         onChange={(event) => {
-          setSpecies(event.target.value)
-        }}/>
+          setSpecies(event.target.value);
+        }}
+      />
       <Form.Label>Affiliation</Form.Label>
       <Form.Control
         onChange={(event) => {
-          setAffiliation(event.target.value)
-        }}/>
-      <Button variant="primary" onClick={addPersonnel}>Add Personnel</Button>{' '}
+          setAffiliation(event.target.value);
+        }}
+      />
+      <Button variant="primary" onClick={addPersonnel}>
+        Add Personnel
+      </Button>{" "}
     </div>
   );
 }
