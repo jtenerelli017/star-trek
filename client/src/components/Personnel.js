@@ -23,6 +23,10 @@ function Personnel() {
       affiliation: affiliation,
     }).then(() => {
       console.log("Success!");
+      let forms = document.getElementsByClassName("input");
+      for (let i = 0; i < forms.length; i++) {
+        forms.item(i).value = "";
+      }
     });
   };
 
@@ -45,39 +49,39 @@ function Personnel() {
         </ToggleButtonGroup>
       </div>
       <div className="prompts-container">
-        <Form.Label class="prompt-label"><b>First Name</b></Form.Label>
-        <Form.Control
+        <Form.Label className="prompt-label"><b>First Name</b></Form.Label>
+        <Form.Control className="input"
           onChange={(event) => {
             setFirstName(event.target.value);
           }}
         />
-        <Form.Label class="prompt-label"><b>Last Name</b></Form.Label>
-        <Form.Control
+        <Form.Label className="prompt-label"><b>Last Name</b></Form.Label>
+        <Form.Control className="input"
           onChange={(event) => {
             setLastName(event.target.value);
           }}
         />
-        <Form.Label class="prompt-label"><b>Gender</b></Form.Label>
-        <Form.Control
+        <Form.Label className="prompt-label"><b>Gender</b></Form.Label>
+        <Form.Control className="input"
           onChange={(event) => {
             setGender(event.target.value);
           }}
         />
-        <Form.Label class="prompt-label"><b>Species</b></Form.Label>
-        <Form.Control
+        <Form.Label className="prompt-label"><b>Species</b></Form.Label>
+        <Form.Control className="input"
           onChange={(event) => {
             setSpecies(event.target.value);
           }}
         />
-        <Form.Label class="prompt-label"><b>Affiliation</b></Form.Label>
-        <Form.Control
+        <Form.Label className="prompt-label"><b>Affiliation</b></Form.Label>
+        <Form.Control className="input"
           onChange={(event) => {
             setAffiliation(event.target.value);
           }}
         />
       </div>
-      <div class="add-item">
-        <Button variant="primary" onClick={addPersonnel}>
+      <div className="add-item">
+        <Button variant="success" onClick={addPersonnel}>
           Add Personnel
         </Button>
       </div>
