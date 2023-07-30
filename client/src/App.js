@@ -15,7 +15,7 @@ function App() {
   const [affiliation, setAffiliation] = useState(null);
 
   const addPersonnel = () => {
-    Axios.post("http://localhost:3001/create", {
+    Axios.post("/create", {
       first_name: firstName,
       last_name: lastName,
       gender: gender,
@@ -27,54 +27,58 @@ function App() {
   };
 
   return (
-    <div>
-      <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
-        <ToggleButton id="tbg-radio-1" value={1}>
-          Create
-        </ToggleButton>
-        <ToggleButton id="tbg-radio-2" value={2}>
-          Read
-        </ToggleButton>
-        <ToggleButton id="tbg-radio-3" value={3}>
-          Update
-        </ToggleButton>
-        <ToggleButton id="tbg-radio-4" value={4}>
-          Destroy
-        </ToggleButton>
-      </ToggleButtonGroup>
-      <Form.Label>First Name</Form.Label>
-      <Form.Control
-        onChange={(event) => {
-          setFirstName(event.target.value);
-        }}
-      />
-      <Form.Label>Last Name</Form.Label>
-      <Form.Control
-        onChange={(event) => {
-          setLastName(event.target.value);
-        }}
-      />
-      <Form.Label>Gender</Form.Label>
-      <Form.Control
-        onChange={(event) => {
-          setGender(event.target.value);
-        }}
-      />
-      <Form.Label>Species</Form.Label>
-      <Form.Control
-        onChange={(event) => {
-          setSpecies(event.target.value);
-        }}
-      />
-      <Form.Label>Affiliation</Form.Label>
-      <Form.Control
-        onChange={(event) => {
-          setAffiliation(event.target.value);
-        }}
-      />
-      <Button variant="primary" onClick={addPersonnel}>
-        Add Personnel
-      </Button>{" "}
+    <div className="App">
+      <div className="crud-container">
+        <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+          <ToggleButton id="tbg-radio-1" value={1}>
+            Create
+          </ToggleButton>
+          <ToggleButton id="tbg-radio-2" value={2}>
+            Read
+          </ToggleButton>
+          <ToggleButton id="tbg-radio-3" value={3}>
+            Update
+          </ToggleButton>
+          <ToggleButton id="tbg-radio-4" value={4}>
+            Destroy
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </div>
+      <div className="prompts-container">
+        <Form.Label>First Name</Form.Label>
+        <Form.Control
+          onChange={(event) => {
+            setFirstName(event.target.value);
+          }}
+        />
+        <Form.Label>Last Name</Form.Label>
+        <Form.Control
+          onChange={(event) => {
+            setLastName(event.target.value);
+          }}
+        />
+        <Form.Label>Gender</Form.Label>
+        <Form.Control
+          onChange={(event) => {
+            setGender(event.target.value);
+          }}
+        />
+        <Form.Label>Species</Form.Label>
+        <Form.Control
+          onChange={(event) => {
+            setSpecies(event.target.value);
+          }}
+        />
+        <Form.Label>Affiliation</Form.Label>
+        <Form.Control
+          onChange={(event) => {
+            setAffiliation(event.target.value);
+          }}
+        />
+        <Button variant="primary" onClick={addPersonnel}>
+          Add Personnel
+        </Button>{" "}
+      </div>
     </div>
   );
 }
