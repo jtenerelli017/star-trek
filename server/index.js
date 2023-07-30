@@ -1,10 +1,9 @@
 const express = require("express");
 const app = express();
 const mysql = require("mysql");
-const cors = require("cors");
 const port = 3001;
 
-app.use(cors());
+// I use this line to avoid an server error
 app.use(express.json());
 
 const db = mysql.createConnection({
