@@ -7,7 +7,7 @@ function Personnel() {
   return (
     <div className="personnel-container">
       <Crud />
-      {/* <PersonnelCreate /> */}
+      <PersonnelCreate />
     </div>
   );
 }
