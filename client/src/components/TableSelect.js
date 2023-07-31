@@ -2,10 +2,11 @@ import React from "react";
 import Personnel from "./Personnel";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
+import StarshipCreate from "./StarshipCreate";
+import RosterCreate from "./RosterCreate";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
-import StarshipCreate from "./StarshipCreate";
 
 function TableSelect() {
   const [table, setTable] = useState(0);
@@ -65,6 +66,7 @@ function TableSelect() {
             </ToggleButton>
           </ToggleButtonGroup>
         </div>
+        <RosterCreate />
       </div>
     );
   }
