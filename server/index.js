@@ -14,11 +14,15 @@ const db = mysql.createConnection({
 });
 
 const isLegal = (arr) => {
-  let blacklist = "@#$%^&*()[]{};:\'\"/,";
+  let blacklist = "@#$%^&*()[]{};:\'\"/\\,";
   for (let i = 0; i < arr.length; i++) {
+    if ((arr[i] === null) || (arr[i].length === 0) || (arr[i].charAt(0).localeCompare(" ") === 0)) {
+      console.log("ERROR: Invalid argument(s).");
+      return(false)
+    }
     for (let j = 0; j < arr[i].length; j++) {
       if (blacklist.includes(arr[i].charAt(j))) {
-        console.log("Error: Illegal character detected");
+        console.log("ERROR: Invalid argument(s).");
         return(false);
       }
     }
@@ -33,14 +37,17 @@ app.post("/create", (req, res) => {
   const species = req.body.species;
   const affiliation = req.body.affiliation;
 
-  let g = gender.toUpperCase();
+  let g = null;
+  if (gender !== null) {
+    g = gender.toUpperCase();
+  }
   if (!isLegal([first_name, last_name, gender, species, affiliation])) {
     res.send("error");
   } else if (g.localeCompare("M") !== 0 && g.localeCompare("F") !== 0 && g.localeCompare("O") !== 0) {
     res.send("error");
   } else db.query(
     "INSERT INTO personnel (first_name, last_name, gender, species, affiliation) VALUES (?, ?, ?, ?, ?)",
-    [first_name, last_name, gender, species, affiliation],
+    [first_name, last_name, g, species, affiliation],
     (err, result) => {
       if (err) {
         console.log(err);
