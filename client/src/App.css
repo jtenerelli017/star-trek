@@ -38,6 +38,21 @@ html {
   max-width: 200px;
 }
 
+.s1 {
+  /* Color */
+  color: lightgreen;
+}
+
+.s2 {
+  /* Color */
+  color: lightpink;
+}
+
+.s3 {
+  /* Color */
+  color: lightcoral;
+}
+
 #app {
   /* Display & Box Model */
   display: flex;
