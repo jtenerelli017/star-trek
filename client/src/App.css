@@ -9,6 +9,26 @@ html {
 .add-item {
   /* Display & Box Model */
   padding-top: 20px;
+  padding-bottom: 5px;
+}
+
+.crud {
+  /* Display & Box Model */
+  padding-bottom: 20px;
+}
+
+.instructions {
+  /* Display & Box Model */
+  max-width: 950px;
+  padding-top: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  
+  /* Color */
+  color: lightgray;
+
+  /* Text */
+  text-align: center;
 }
 
 .personnel-container {
@@ -34,8 +54,16 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 30px;
   max-width: 200px;
+}
+
+.status {
+  /* Display & Box Model */
+  padding-left: 20px;
+  padding-right: 20px;
+
+  /* Text */
+  text-align: center;
 }
 
 .s1 {
@@ -80,5 +108,5 @@ html {
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  opacity: 50%;
+  opacity: 25%;
 }
