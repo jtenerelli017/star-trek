@@ -5,6 +5,7 @@ import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
+import StarshipCreate from "./StarshipCreate";
 
 function TableSelect() {
   const [table, setTable] = useState(0);
@@ -45,6 +46,7 @@ function TableSelect() {
             </ToggleButton>
           </ToggleButtonGroup>
         </div>
+        <StarshipCreate />
       </div>
     );
   } else {
