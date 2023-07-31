@@ -30,6 +30,24 @@ const isLegal = (arr) => {
   return(true);
 };
 
+const reasonIsLegal = (str) => {
+  if (str === null) {
+    return(true);
+  }
+  if (str.charAt(0).localeCompare(" ") === 0) {
+    console.log("ERROR: Invalid argument(s).");
+    return(false)
+  }
+  let blacklist = "@#$%^&*()[]{};:\'\"/\\,";
+  for (let i = 0; i < str.length; i++) {
+    if (blacklist.includes(str.charAt(i))) {
+      console.log("ERROR: Invalid argument(s).");
+      return(false);
+    }
+  }
+  return(true);
+};
+
 app.post("/createPersonnel", (req, res) => {
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
@@ -70,6 +88,37 @@ app.post("/createStarship", (req, res) => {
   } else db.query(
     "INSERT INTO starship_data (registry, name, class) VALUES (?, ?, ?)",
     [ship_reg, ship_name, ship_class],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        if ((err.code).localeCompare('ER_DUP_ENTRY') === 0) {
+          console.log("exists");
+          res.send("exists");
+        } else {
+          res.send("error");
+        }
+      } else {
+        console.log(result);
+        res.send("success");
+      }
+    }
+  );
+});
+
+app.post("/createRoster", (req, res) => {
+  const starship_reg = req.body.starship_reg;
+  const personnel_id = req.body.personnel_id;
+  const date_start = req.body.date_start;
+  const date_end = req.body.date_end;
+  const reason = req.body.reason;
+
+  if (!isLegal([starship_reg, personnel_id, date_start])) {
+    res.send("error");
+  } else if (!reasonIsLegal(date_end) && !reasonIsLegal(reason)) {
+    res.send("error");
+  } else db.query(
+    "INSERT INTO starship_roster (starship_reg, personnel_id, date_start, date_end, reason) VALUES (?, ?, ?, ?, ?)",
+    [starship_reg, personnel_id, date_start, date_end, reason],
     (err, result) => {
       if (err) {
         console.log(err);
