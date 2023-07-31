@@ -1,7 +1,7 @@
 import Axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import PersonnelStatus from "./PersonnelStatus";
+import StatusMessage from "./StatusMessage";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
@@ -19,7 +19,7 @@ function PersonnelCreate() {
   // 3 = user error
 
   const addPersonnel = () => {
-    Axios.post("/create", {
+    Axios.post("/createPersonnel", {
       first_name: firstName,
       last_name: lastName,
       gender: gender,
@@ -122,7 +122,7 @@ function PersonnelCreate() {
           Add Personnel
         </Button>
       </div>
-      <PersonnelStatus statusNum={statusNum} />
+      <StatusMessage statusNum={statusNum} />
     </div>
   );
 }
