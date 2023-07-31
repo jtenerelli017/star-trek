@@ -30,7 +30,6 @@ function TableSelect() {
       </div>
     );
   } else if (table === 1) {
-    console.log(table);
     return (
       <div className="align">
         <div id="table-select-radio-container">
