@@ -1,6 +1,7 @@
 import Axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import StatusMessage from "./StatusMessage";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
@@ -11,23 +12,13 @@ function PersonnelCreate() {
   const [gender, setGender] = useState(null);
   const [species, setSpecies] = useState(null);
   const [affiliation, setAffiliation] = useState(null);
+  const [statusNum, setStatusNum] = useState(0);
+  // 0 = nothing
+  // 1 = success
+  // 2 = network error
+  // 3 = user error
 
   const addPersonnel = () => {
-    let blacklist = "@#$%^&*()[]{};:\'\"/,";
-    let arr = [firstName, lastName, gender, species, affiliation];
-    for (let i = 0; i < arr.length; i++) {
-      for (let j = 0; j < arr[i].length; j++) {
-        if (blacklist.includes(arr[i].charAt(j))) {
-          console.log("Error");
-          return(-1);
-        }
-      }
-    }
-    let g = gender.toUpperCase();
-    if (g.localeCompare("M") !== 0 && g.localeCompare("F") !== 0 && g.localeCompare("O") !== 0) {
-      console.log("Error");
-      return(-1);
-    }
     setGender(gender.toUpperCase());
     Axios.post("/create", {
       first_name: firstName,
@@ -36,18 +27,23 @@ function PersonnelCreate() {
       species: species,
       affiliation: affiliation,
     }).then((res) => {
-      let success = "Success";
       let result = res.data;
-      if (result.localeCompare(success) === 0) {
-        console.log(res.data);
+      if (result.localeCompare("success") === 0) {
+        setStatusNum(1);
+        console.log("Success");
+        // clear input forms
         let forms = document.getElementsByClassName("input");
         for (let i = 0; i < forms.length; i++) {
           forms.item(i).value = "";
         }
       } else {
-        console.log(res.data);
+        setStatusNum(3)
+        console.log("Error");
       }
-    }).catch(err => console.log(err.message));
+    }).catch(err => {
+      console.log("Error");
+      setStatusNum(2);
+    });
   };
 
   return (
@@ -89,6 +85,7 @@ function PersonnelCreate() {
           Add Personnel
         </Button>
       </div>
+      <StatusMessage statusNum={statusNum}/>
     </div>
   );
 }
