@@ -30,7 +30,7 @@ const isLegal = (arr) => {
   return(true);
 };
 
-app.post("/create", (req, res) => {
+app.post("/createPersonnel", (req, res) => {
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
   const gender = req.body.gender;
@@ -53,6 +53,34 @@ app.post("/create", (req, res) => {
         console.log(err);
         res.send("error");
       } else {
+        console.log(result);
+        res.send("success");
+      }
+    }
+  );
+});
+
+app.post("/createStarship", (req, res) => {
+  const ship_reg = req.body.ship_reg;
+  const ship_name = req.body.ship_name;
+  const ship_class = req.body.ship_class;
+
+  if (!isLegal([ship_reg, ship_name, ship_class])) {
+    res.send("error");
+  } else db.query(
+    "INSERT INTO starship_data (registry, name, class) VALUES (?, ?, ?)",
+    [ship_reg, ship_name, ship_class],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        if ((err.code).localeCompare('ER_DUP_ENTRY') === 0) {
+          console.log("exists");
+          res.send("exists");
+        } else {
+          res.send("error");
+        }
+      } else {
+        console.log(result);
         res.send("success");
       }
     }
