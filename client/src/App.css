@@ -1,3 +1,5 @@
+/* TAGS */
+
 html {
   /* Display & Box Model */
   overflow-x: hidden;
@@ -6,16 +8,7 @@ html {
   background-color: black;
 }
 
-.add-item {
-  /* Display & Box Model */
-  padding-top: 20px;
-  padding-bottom: 5px;
-}
-
-.crud {
-  /* Display & Box Model */
-  padding-bottom: 20px;
-}
+/* CLASSES */
 
 .instructions {
   /* Display & Box Model */
@@ -31,15 +24,6 @@ html {
   text-align: center;
 }
 
-.personnel-container {
-  /* Display & Box Model */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  padding-top: -15px;
-}
-
 .prompt-label {
   /* Display & Box Model */
   padding-top: 10px;
@@ -47,14 +31,6 @@ html {
 
   /* Color */
   color: white;
-}
-
-.prompts-container {
-  /* Display & Box Model */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 200px;
 }
 
 .status {
@@ -66,35 +42,44 @@ html {
   text-align: center;
 }
 
-.s1 {
-  /* Color */
-  color: lightgreen;
-}
-
-.s2 {
-  /* Color */
-  color: lightpink;
-}
-
-.s3 {
-  /* Color */
-  color: lightcoral;
-}
-
-#app {
+.align {
   /* Display & Box Model */
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* IDS */
+
+#app-container {
+  /* Display & Box Model */
   position: absolute;
   width: 100%;
   height: 100%;
 }
 
-#title {
+#table-select-radio-container {
   /* Display & Box Model */
-  width: 100%;
+  display: inline;
+  padding-bottom: 20px;
+}
 
+#crud-buttons-container {
+  /* Display & Box Model */
+  display: inline;
+}
+
+#personnel-container {
+  /* Display & Box Model */
+  padding-top: -15px;
+}
+
+#prompts-container {
+  /* Display & Box Model */
+  max-width: 200px;
+}
+
+#title {
   /* Color */
   color: yellow;
 
@@ -104,9 +89,32 @@ html {
 }
 
 #star-trek-jpg {
+  /* Display & Box Model */
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
   opacity: 25%;
+  background-repeat: repeat-y;
+}
+
+#add-item {
+  /* Display & Box Model */
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+
+#s1 {
+  /* Color */
+  color: lightgreen;
+}
+
+#s2 {
+  /* Color */
+  color: lightpink;
+}
+
+#s3 {
+  /* Color */
+  color: lightcoral;
 }
