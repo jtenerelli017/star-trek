@@ -1,30 +1,31 @@
 import Axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import PersonnelStatus from "./StatusMessage";
+import StatusMessage from "./StatusMessage";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 
 function RosterCreate() {
-  const [firstName, setFirstName] = useState(null);
-  const [lastName, setLastName] = useState(null);
-  const [gender, setGender] = useState(null);
-  const [species, setSpecies] = useState(null);
-  const [affiliation, setAffiliation] = useState(null);
+  const [starshipReg, setStarshipReg] = useState(null);
+  const [personnelId, setPersonnelId] = useState(null);
+  const [dateStart, setDateStart] = useState(null);
+  const [dateEnd, setDateEnd] = useState(null);
+  const [reason, setReason] = useState(null);
   const [statusNum, setStatusNum] = useState(0);
   // 0 = nothing
   // 1 = success
   // 2 = network error
   // 3 = user error
+  // 4 = data already exists
 
   const addPersonnel = () => {
-    Axios.post("/create", {
-      first_name: firstName,
-      last_name: lastName,
-      gender: gender,
-      species: species,
-      affiliation: affiliation,
+    Axios.post("/createRoster", {
+      starship_reg: starshipReg,
+      personnel_id: personnelId,
+      date_start: dateStart,
+      date_end: dateEnd,
+      reason: reason,
     })
       .then((res) => {
         let result = res.data;
@@ -36,11 +37,11 @@ function RosterCreate() {
           for (let i = 0; i < forms.length; i++) {
             forms.item(i).value = "";
           }
-          setFirstName(null);
-          setLastName(null);
-          setGender(null);
-          setSpecies(null);
-          setAffiliation(null);
+          setStarshipReg(null);
+          setPersonnelId(null);
+          setDateStart(null);
+          setDateEnd(null);
+          setReason(null);
         } else {
           setStatusNum(3);
           console.log("Error");
@@ -55,74 +56,73 @@ function RosterCreate() {
   return (
     <div id="personnel-container" className="align">
       <p className="instructions">
-        Create a personnel entry here. Enter a first and last name, gender,
-        species, and affiliation. The "gender" field must take one of 'm' (for
-        male), 'f' (for female), or 'o' (for other/non-binary). Note that this
-        field is not case-sensitive, but the others are.
+        Create a starship roster entry here. Personnel ID and starship registries must already exist. Starting date must be unique
+        per personnel/registry pair. Ending date and reason can be empty.
+        Dates must be in "Star Date" format (i.e. 42117.3).
       </p>
       <p className="instructions">
         Arguments cannot 1) be empty, 2) be more than 45 characters long, and/or
-        3) start with a SPACE. Prohibited characters include: @ # $ % ^ & * ( )
+        3) start with a SPACE (unless the field is allowed to be empty). Prohibited characters include: @ # $ % ^ & * ( )
         [ ] {} ; : ' " / \ ,
       </p>
       <div id="prompts-container" className="align">
         <Form.Label className="prompt-label">
-          <b>First Name</b>
+          <b>Starship Registry</b>
         </Form.Label>
         <Form.Control
           className="input"
           onChange={(event) => {
-            setFirstName(event.target.value);
+            setStarshipReg(event.target.value);
             setStatusNum(0);
           }}
         />
         <Form.Label className="prompt-label">
-          <b>Last Name</b>
+          <b>Personnel ID</b>
         </Form.Label>
         <Form.Control
           className="input"
           onChange={(event) => {
-            setLastName(event.target.value);
+            setPersonnelId(event.target.value);
             setStatusNum(0);
           }}
         />
         <Form.Label className="prompt-label">
-          <b>Gender</b>
+          <b>Starting Date</b>
         </Form.Label>
         <Form.Control
           className="input"
           onChange={(event) => {
-            setGender(event.target.value);
+            setDateStart(event.target.value);
             setStatusNum(0);
           }}
         />
         <Form.Label className="prompt-label">
-          <b>Species</b>
+          <b>Ending Date</b>
         </Form.Label>
         <Form.Control
           className="input"
           onChange={(event) => {
-            setSpecies(event.target.value);
+            setDateEnd(event.target.value);
             setStatusNum(0);
           }}
         />
         <Form.Label className="prompt-label">
-          <b>Affiliation</b>
+          <b>Reason</b>
         </Form.Label>
         <Form.Control
           className="input"
           onChange={(event) => {
-            setAffiliation(event.target.value);
+            setReason(event.target.value);
             setStatusNum(0);
           }}
         />
       </div>
       <div id="add-item">
         <Button variant="success" onClick={addPersonnel}>
-          Add Personnel
+          Add Roster
         </Button>
       </div>
-      <PersonnelStatus statusNum={statusNum} />
+      <StatusMessage statusNum={statusNum} />
     </div>
   );
 }
