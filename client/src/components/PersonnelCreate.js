@@ -13,19 +13,41 @@ function PersonnelCreate() {
   const [affiliation, setAffiliation] = useState(null);
 
   const addPersonnel = () => {
+    let blacklist = "@#$%^&*()[]{};:\'\"/,";
+    let arr = [firstName, lastName, gender, species, affiliation];
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = 0; j < arr[i].length; j++) {
+        if (blacklist.includes(arr[i].charAt(j))) {
+          console.log("Error");
+          return(-1);
+        }
+      }
+    }
+    let g = gender.toUpperCase();
+    if (g.localeCompare("M") !== 0 && g.localeCompare("F") !== 0 && g.localeCompare("O") !== 0) {
+      console.log("Error");
+      return(-1);
+    }
+    setGender(gender.toUpperCase());
     Axios.post("/create", {
       first_name: firstName,
       last_name: lastName,
       gender: gender,
       species: species,
       affiliation: affiliation,
-    }).then(() => {
-      console.log("Success!");
-      let forms = document.getElementsByClassName("input");
-      for (let i = 0; i < forms.length; i++) {
-        forms.item(i).value = "";
+    }).then((res) => {
+      let success = "Success";
+      let result = res.data;
+      if (result.localeCompare(success) === 0) {
+        console.log(res.data);
+        let forms = document.getElementsByClassName("input");
+        for (let i = 0; i < forms.length; i++) {
+          forms.item(i).value = "";
+        }
+      } else {
+        console.log(res.data);
       }
-    });
+    }).catch(err => console.log(err.message));
   };
 
   return (
