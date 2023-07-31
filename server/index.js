@@ -25,9 +25,9 @@ app.post("/create", (req, res) => {
     [first_name, last_name, gender, species, affiliation],
     (err, result) => {
       if (err) {
-        console.log(err);
+        res.send("Error");
       } else {
-        res.send("Values inserted");
+        res.send("Success");
       }
     }
   );
