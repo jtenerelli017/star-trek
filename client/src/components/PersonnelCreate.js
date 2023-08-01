@@ -53,7 +53,7 @@ function PersonnelCreate() {
   };
 
   return (
-    <div id="personnel-container" className="align">
+    <div className="align">
       <p className="instructions">
         Create a personnel entry here. Enter a first and last name, gender,
         species, and affiliation. The "gender" field must take one of 'm' (for
