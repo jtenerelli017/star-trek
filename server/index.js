@@ -136,6 +136,16 @@ app.post("/createRoster", (req, res) => {
   );
 });
 
+app.get('/readPersonnel', (req, res) => {
+  db.query("SELECT * FROM personnel", (err, result) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.send(result)
+    }
+  })
+})
+
 app.listen(port, () => {
   console.log("Server running on port 3001");
 });
