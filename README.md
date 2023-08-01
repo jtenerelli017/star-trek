@@ -6,4 +6,5 @@
 5. In the first terminal, run command `cd server`.
 6. Run command `node index.js`. The console should output `Server running on port 3001`.
 7. In the second terminal, run command `cd client`.
-8. Run command `npm start`.
+8. Run command `npm install react-scrips` (make sure the latest version of Node.js is installed).
+9. Run command `npm start`.
