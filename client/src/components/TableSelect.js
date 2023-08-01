@@ -10,7 +10,6 @@ import "../App.css";
 
 function TableSelect() {
   const [table, setTable] = useState(0);
-  console.log(1);
 
   if (table === 0) {
     return (
