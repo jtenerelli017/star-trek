@@ -8,12 +8,20 @@ html {
   background-color: black;
 }
 
+table, th, td {
+  /* Display & Box Model */
+  padding: 5px;
+
+  /* Text */
+  background-color: white;
+  border: 1px solid black;
+}
+
 /* CLASSES */
 
 .instructions {
   /* Display & Box Model */
   max-width: 950px;
-  padding-top: 5px;
   padding-left: 20px;
   padding-right: 20px;
   
@@ -49,6 +57,11 @@ html {
   align-items: center;
 }
 
+.generate {
+  /* Display & Box Model */
+  padding-bottom: 15px;
+}
+
 /* IDS */
 
 #app-container {
@@ -67,17 +80,17 @@ html {
 #crud-buttons-container {
   /* Display & Box Model */
   display: inline;
-  padding-bottom: 15px;
-}
-
-#personnel-container {
-  /* Display & Box Model */
-  padding-top: -15px;
+  padding-bottom: 10px;
 }
 
 #prompts-container {
   /* Display & Box Model */
   max-width: 200px;
+}
+
+#personnel-list {
+  display: flex;
+  padding-bottom: 5px;
 }
 
 #title {
@@ -101,7 +114,7 @@ html {
 
 #add-item {
   /* Display & Box Model */
-  padding-top: 20px;
+  padding-top: 40px;
   padding-bottom: 5px;
 }
 
