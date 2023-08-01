@@ -5,6 +5,7 @@ function ListPersonnel(personnelList) {
   return (
     <div id="personnel-list">
       <table>
+        <caption className="table-caption">List of Personnel</caption>
         <tbody>
           <tr>
             <th>ID</th>
@@ -16,7 +17,7 @@ function ListPersonnel(personnelList) {
           </tr>
           {l.map((val, key) => {
             return (
-              <tr key={key}>
+              <tr key={key} onClick={() => console.log(val.id)}>
                 <td>{val.id}</td>
                 <td>{val.first_name}</td>
                 <td>{val.last_name}</td>
