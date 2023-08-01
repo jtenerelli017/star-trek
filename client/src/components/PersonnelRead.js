@@ -43,9 +43,7 @@ function PersonnelRead() {
         <p className="instructions">
           Read a list of all personnel here.
         </p>
-        <div className="generate">
-          <button onClick={getPersonnel}>Generate List</button>
-        </div>
+        <button onClick={getPersonnel}>Generate List</button>
         <ListPersonnel personnelList={personnelList}/>
         <StatusMessage statusNum={statusNum} />
       </div>
