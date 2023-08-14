@@ -1,9 +1,7 @@
-import Axios from "axios";
-import StatusMessage from "./StatusMessage";
-import ListPersonnel from "./ListPersonnel";
 import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../App.css";
+import Axios from "axios";
+import PersonnelReadBio from "./PersonnelReadBio";
+import StatusMessage from "../StatusMessage";
 
 function PersonnelRead() {
   const [personnelList, setPersonnelList] = useState(null);
@@ -44,7 +42,7 @@ function PersonnelRead() {
           Read a list of all personnel here.
         </p>
         <button onClick={getPersonnel}>Generate List</button>
-        <ListPersonnel personnelList={personnelList}/>
+        <PersonnelReadBio personnelList={personnelList}/>
         <StatusMessage statusNum={statusNum} />
       </div>
     );

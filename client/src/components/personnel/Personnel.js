@@ -1,8 +1,6 @@
 import { useState } from "react";
 import PersonnelCreate from "./PersonnelCreate";
 import PersonnelRead from "./PersonnelRead";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../App.css";
 
 function Personnel() {
   const [crud, setCrud] = useState(0);
