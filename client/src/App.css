@@ -8,7 +8,7 @@ html {
   background-color: black;
 }
 
-table, th, td {
+table, td, th {
   /* Display & Box Model */
   padding: 5px;
 
@@ -19,6 +19,18 @@ table, th, td {
 }
 
 /* CLASSES */
+
+.align {
+  /* Display & Box Model */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.generate {
+  /* Display & Box Model */
+  padding-bottom: 15px;
+}
 
 .instructions {
   /* Display & Box Model */
@@ -51,18 +63,6 @@ table, th, td {
   text-align: center;
 }
 
-.align {
-  /* Display & Box Model */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.generate {
-  /* Display & Box Model */
-  padding-bottom: 15px;
-}
-
 .table-caption {
   /* Text */
   caption-side: top;
@@ -74,17 +74,17 @@ table, th, td {
 
 /* IDS */
 
+#add-item {
+  /* Display & Box Model */
+  padding-top: 40px;
+  padding-bottom: 5px;
+}
+
 #app-container {
   /* Display & Box Model */
   position: absolute;
   width: 100%;
   height: 100%;
-}
-
-#table-select-radio-container {
-  /* Display & Box Model */
-  display: inline;
-  padding-bottom: 20px;
 }
 
 #crud-buttons-container {
@@ -93,24 +93,15 @@ table, th, td {
   padding-bottom: 10px;
 }
 
-#prompts-container {
-  /* Display & Box Model */
-  max-width: 200px;
-}
-
 #personnel-list {
   display: flex;
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
-#title {
-  /* Color */
-  color: yellow;
-
-  /* Text */
-  text-align: center;
-  font-size: 60px;
+#prompts-container {
+  /* Display & Box Model */
+  max-width: 200px;
 }
 
 #star-trek-jpg {
@@ -121,12 +112,6 @@ table, th, td {
   transform: translateX(-50%) translateY(-50%);
   opacity: 25%;
   background-repeat: repeat-y;
-}
-
-#add-item {
-  /* Display & Box Model */
-  padding-top: 40px;
-  padding-bottom: 5px;
 }
 
 #s1 {
@@ -142,4 +127,19 @@ table, th, td {
 #s3 {
   /* Color */
   color: lightcoral;
+}
+
+#table-select-radio-container {
+  /* Display & Box Model */
+  display: inline;
+  padding-bottom: 20px;
+}
+
+#title {
+  /* Color */
+  color: yellow;
+
+  /* Text */
+  text-align: center;
+  font-size: 60px;
 }
