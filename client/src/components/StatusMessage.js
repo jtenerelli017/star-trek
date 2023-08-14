@@ -1,5 +1,3 @@
-import "../App.css";
-
 function StatusMessage(statusNum) {
   if (statusNum.statusNum === 0)
     return (<></>);
