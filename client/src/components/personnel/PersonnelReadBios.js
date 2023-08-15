@@ -1,7 +1,7 @@
-function PersonnelReadBio(personnelList) {
-  const l = personnelList.personnelList;
+function PersonnelReadBios(personnelBios) {
+  const plist = personnelBios.personnelBios;
   return (
-    <div id="personnel-list">
+    <div className="personnel-read-table">
       <table>
         <caption className="table-caption">List of Personnel</caption>
         <tbody>
@@ -13,7 +13,7 @@ function PersonnelReadBio(personnelList) {
             <th>Species</th>
             <th>Affiliation</th>
           </tr>
-          {l.map((val, key) => {
+          {plist.map((val, key) => {
             return (
               <tr key={key} onClick={() => console.log(val.id)}>
                 <td>{val.id}</td>
@@ -31,4 +31,4 @@ function PersonnelReadBio(personnelList) {
   );
 }
 
-export default PersonnelReadBio;
+export default PersonnelReadBios;
