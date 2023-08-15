@@ -1,10 +1,13 @@
 import { useState } from "react";
 import Axios from "axios";
-import PersonnelReadBio from "./PersonnelReadBio";
+import PersonnelReadBios from "./PersonnelReadBios";
+import PersonnelReadHist from "./PersonnelReadHist";
+import PersonnelReadLogs from "./PersonnelReadLogs";
+import PersonnelReadShip from "./PersonnelReadShip";
 import StatusMessage from "../StatusMessage";
 
 function PersonnelRead() {
-  const [personnelList, setPersonnelList] = useState(null);
+  const [personnelBios, setpersonnelBios] = useState(null);
   const [statusNum, setStatusNum] = useState(0);
   // 0 = nothing
   // 1 = success
@@ -15,7 +18,7 @@ function PersonnelRead() {
   const getPersonnel = () => {
     Axios.get("/readPersonnel")
       .then((res) => {
-        setPersonnelList(res.data);
+        setpersonnelBios(res.data);
         setStatusNum(1);
       }).catch(err => {
         console.log(err)
@@ -42,7 +45,10 @@ function PersonnelRead() {
           Read a list of all personnel here.
         </p>
         <button onClick={getPersonnel}>Generate List</button>
-        <PersonnelReadBio personnelList={personnelList}/>
+        <PersonnelReadBios personnelBios={personnelBios} />
+        <PersonnelReadHist personnelHist={null} />
+        <PersonnelReadLogs personnelLogs={null} />
+        <PersonnelReadShip personnelShip={null} />
         <StatusMessage statusNum={statusNum} />
       </div>
     );
