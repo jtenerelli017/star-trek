@@ -15,7 +15,6 @@ table, td, th {
   /* Text */
   background-color: white;
   border: 1px solid black;
-  text-align: center;
 }
 
 /* CLASSES */
@@ -43,6 +42,13 @@ table, td, th {
 
   /* Text */
   text-align: center;
+}
+
+.personnel-read-table {
+  /* Display & Box Model */
+  display: flex;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .prompt-label {
@@ -91,12 +97,6 @@ table, td, th {
   /* Display & Box Model */
   display: inline;
   padding-bottom: 10px;
-}
-
-#personnel-list {
-  display: flex;
-  padding-top: 5px;
-  padding-bottom: 5px;
 }
 
 #prompts-container {
