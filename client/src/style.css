@@ -1,4 +1,4 @@
-/* TAGS */
+/* ELEMENTS */
 
 html {
   /* Display & Box Model */
@@ -6,15 +6,6 @@ html {
 
   /* Color */
   background-color: black;
-}
-
-table, td, th {
-  /* Display & Box Model */
-  padding: 5px;
-
-  /* Text */
-  background-color : white;
-  border: 1px solid black;
 }
 
 /* CLASSES */
