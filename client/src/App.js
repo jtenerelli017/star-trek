@@ -1,4 +1,4 @@
-import "./App.css";
+import "./style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import DataSelect from "./components/DataSelect";
 import React from "react";
