@@ -26,33 +26,27 @@ function PersonnelRead() {
       });
   };
 
-  if (statusNum !== 1) {
-    return (
-      <div id="personnel-container" className="align">
-        <p className="instructions">
-          Read a list of all personnel here.
-        </p>
-        <div className="generate">
-          <button onClick={getPersonnel}>Generate List</button>
-        </div>
-        <StatusMessage statusNum={statusNum} />
-      </div>
-    );
-  } else {
-    return (
-      <div id="personnel-container" className="align">
-        <p className="instructions">
-          Read a list of all personnel here.
-        </p>
+  return (
+    <div id="personnel-container" className="align">
+      <p className="instructions">
+        Read a list of all personnel here.
+      </p>
+      <div className="generate">
         <button onClick={getPersonnel}>Generate List</button>
-        <PersonnelReadBios personnelBios={personnelBios} />
-        <PersonnelReadHist personnelHist={null} />
-        <PersonnelReadLogs personnelLogs={null} />
-        <PersonnelReadShip personnelShip={null} />
-        <StatusMessage statusNum={statusNum} />
       </div>
-    );
-  };
-}
+      {statusNum !== 1 ?
+        <></>
+      : 
+        <div>
+          <PersonnelReadBios personnelBios={personnelBios} />
+          <PersonnelReadHist personnelHist={null} />
+          <PersonnelReadLogs personnelLogs={null} />
+          <PersonnelReadShip personnelShip={null} />
+        </div>
+      }
+          <StatusMessage statusNum={statusNum} />
+    </div>
+  )
+};
 
 export default PersonnelRead;
