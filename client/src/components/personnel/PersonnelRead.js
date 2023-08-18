@@ -7,7 +7,7 @@ import PersonnelReadShip from "./PersonnelReadShip";
 import StatusMessage from "../StatusMessage";
 
 function PersonnelRead() {
-  const [personnelBios, setpersonnelBios] = useState(null);
+  const [personnelBios, setPersonnelBios] = useState(null);
   const [statusNum, setStatusNum] = useState(0);
   // 0 = nothing
   // 1 = success
@@ -18,7 +18,7 @@ function PersonnelRead() {
   const getPersonnel = () => {
     Axios.get("/readPersonnel")
       .then((res) => {
-        setpersonnelBios(res.data);
+        setPersonnelBios(res.data);
         setStatusNum(1);
       }).catch(err => {
         console.log(err)
