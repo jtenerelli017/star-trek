@@ -2,7 +2,7 @@ function PersonnelReadBios(personnelBios) {
   const plist = personnelBios.personnelBios;
   return (
     <div className="personnel-read-table">
-      <table>
+      <table className="table">
         <caption className="table-caption">List of Personnel</caption>
         <tbody>
           <tr>
