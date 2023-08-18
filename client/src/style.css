@@ -1,0 +1,145 @@
+/* TAGS */
+
+html {
+  /* Display & Box Model */
+  overflow-x: hidden;
+
+  /* Color */
+  background-color: black;
+}
+
+table, td, th {
+  /* Display & Box Model */
+  padding: 5px;
+
+  /* Text */
+  background-color : white;
+  border: 1px solid black;
+}
+
+/* CLASSES */
+
+.align {
+  /* Display & Box Model */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.generate {
+  /* Display & Box Model */
+  padding-bottom: 15px;
+}
+
+.instructions {
+  /* Display & Box Model */
+  max-width: 950px;
+  padding-left: 20px;
+  padding-right: 20px;
+  
+  /* Color */
+  color: lightgray;
+
+  /* Text */
+  text-align: center;
+}
+
+.personnel-read-table {
+  /* Display & Box Model */
+  display: flex;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.prompt-label {
+  /* Display & Box Model */
+  padding-top: 10px;
+  padding-bottom: 5px;
+
+  /* Color */
+  color: white;
+}
+
+.status {
+  /* Display & Box Model */
+  padding-left: 20px;
+  padding-right: 20px;
+
+  /* Text */
+  text-align: center;
+}
+
+.table-caption {
+  /* Text */
+  caption-side: top;
+  text-align: center;
+
+  /* Color */
+  color: white;
+}
+
+/* IDS */
+
+#add-item {
+  /* Display & Box Model */
+  padding-top: 40px;
+  padding-bottom: 5px;
+}
+
+#app-container {
+  /* Display & Box Model */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#crud-buttons-container {
+  /* Display & Box Model */
+  display: inline;
+  padding-bottom: 10px;
+}
+
+#prompts-container {
+  /* Display & Box Model */
+  max-width: 200px;
+}
+
+#star-trek-jpg {
+  /* Display & Box Model */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  opacity: 25%;
+  background-repeat: repeat-y;
+}
+
+#s1 {
+  /* Color */
+  color: lightgreen;
+}
+
+#s2 {
+  /* Color */
+  color: lightpink;
+}
+
+#s3 {
+  /* Color */
+  color: lightcoral;
+}
+
+#table-select-radio-container {
+  /* Display & Box Model */
+  display: inline;
+  padding-bottom: 20px;
+}
+
+#title {
+  /* Color */
+  color: yellow;
+
+  /* Text */
+  text-align: center;
+  font-size: 60px;
+}
