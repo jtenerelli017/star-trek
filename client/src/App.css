@@ -22,6 +22,14 @@ html {
   padding-bottom: 15px;
 }
 
+.header {
+  /* Color */
+  color: white;
+
+  /* Text */
+  text-align: center;
+}
+
 .instructions {
   /* Display & Box Model */
   max-width: 950px;
