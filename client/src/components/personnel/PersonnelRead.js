@@ -11,6 +11,7 @@ function PersonnelRead() {
   const [personnelHist, setPersonnelHist] = useState(null);
   const [personnelLogs, setPersonnelLogs] = useState(null);
   const [personnelShip, setPersonnelShip] = useState(null);
+  const [personnelId, setPersonnelId] = useState(null);
   const [statusNum, setStatusNum] = useState(0);
   // 0 = nothing
   // 1 = success
