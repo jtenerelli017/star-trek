@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Personnel from "./personnel/Personnel";
-import RosterCreate from "./roster/RosterCreate";
-import StarshipCreate from "./starship/StarshipCreate";
+import Roster from "./roster/Roster";
+import Starship from "./starship/Starship";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 
@@ -23,10 +23,7 @@ function DataSelect() {
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
-      {table === 0 ? <Personnel />
-        : table === 1 ? <StarshipCreate />
-        : <RosterCreate />
-      }
+      {table === 0 ? <Personnel /> : table === 1 ? <Starship /> : <Roster />}
     </div>
   );
 }
