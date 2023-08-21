@@ -49,6 +49,8 @@ const reasonIsLegal = (str) => {
 };
 
 app.post("/createPersonnel", (req, res) => {
+  console.log(req);
+
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
   const gender = req.body.gender;
@@ -79,6 +81,8 @@ app.post("/createPersonnel", (req, res) => {
 });
 
 app.post("/createStarship", (req, res) => {
+  console.log(req);
+
   const ship_reg = req.body.ship_reg;
   const ship_name = req.body.ship_name;
   const ship_class = req.body.ship_class;
@@ -106,6 +110,8 @@ app.post("/createStarship", (req, res) => {
 });
 
 app.post("/createRoster", (req, res) => {
+  console.log(req);
+
   const starship_reg = req.body.starship_reg;
   const personnel_id = req.body.personnel_id;
   const date_start = req.body.date_start;
@@ -137,6 +143,7 @@ app.post("/createRoster", (req, res) => {
 });
 
 app.get('/readPersonnelBios', (req, res) => {
+  console.log(req);
   db.query("SELECT * FROM personnel", (err, result) => {
     if (err) {
       console.log(err)

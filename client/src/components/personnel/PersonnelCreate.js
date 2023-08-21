@@ -45,7 +45,7 @@ function PersonnelCreate() {
         }
       })
       .catch((err) => {
-        console.log("Error");
+        console.log(err);
         setStatusNum(2);
       });
   };
