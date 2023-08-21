@@ -17,7 +17,7 @@ function RosterCreate() {
   // 3 = user error
   // 4 = data already exists
 
-  const addPersonnel = () => {
+  const addRoster = () => {
     Axios.post("/createRoster", {
       starship_reg: starshipReg,
       personnel_id: personnelId,
@@ -46,7 +46,7 @@ function RosterCreate() {
         }
       })
       .catch((err) => {
-        console.log("Error");
+        console.log(err);
         setStatusNum(2);
       });
   };
@@ -116,7 +116,7 @@ function RosterCreate() {
         />
       </div>
       <div id="add-item">
-        <Button variant="success" onClick={addPersonnel}>
+        <Button variant="success" onClick={addRoster}>
           Add Roster
         </Button>
       </div>
