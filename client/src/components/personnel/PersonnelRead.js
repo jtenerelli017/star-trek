@@ -8,6 +8,9 @@ import StatusMessage from "../StatusMessage";
 
 function PersonnelRead() {
   const [personnelBios, setPersonnelBios] = useState(null);
+  const [personnelHist, setPersonnelHist] = useState(null);
+  const [personnelLogs, setPersonnelLogs] = useState(null);
+  const [personnelShip, setPersonnelShip] = useState(null);
   const [statusNum, setStatusNum] = useState(0);
   // 0 = nothing
   // 1 = success
@@ -16,9 +19,46 @@ function PersonnelRead() {
   // 4 = data exists
 
   const getPersonnel = () => {
-    Axios.get("/readPersonnel")
+    getPersonnelBios()
+  }
+
+  const getPersonnelBios = () => {
+    Axios.get("/readPersonnelBios")
       .then((res) => {
         setPersonnelBios(res.data);
+        setStatusNum(1);
+      }).catch(err => {
+        console.log(err)
+        setStatusNum(2);
+      });
+  };
+
+  const getPersonnelHist = () => {
+    Axios.get("/readPersonnelHist")
+      .then((res) => {
+        setPersonnelHist(res.data); 
+        setStatusNum(1);
+      }).catch(err => {
+        console.log(err)
+        setStatusNum(2);
+      });
+  };
+
+  const getPersonnelLogs = () => {
+    Axios.get("/readPersonnelLogs")
+      .then((res) => {
+        setPersonnelLogs(res.data);
+        setStatusNum(1);
+      }).catch(err => {
+        console.log(err)
+        setStatusNum(2);
+      });
+  };
+
+  const getPersonnelShip = () => {
+    Axios.get("/readPersonnelShip")
+      .then((res) => {
+        setPersonnelShip(res.data);
         setStatusNum(1);
       }).catch(err => {
         console.log(err)
@@ -34,15 +74,15 @@ function PersonnelRead() {
       <div className="generate">
         <button onClick={getPersonnel}>Generate List</button>
       </div>
-      {statusNum !== 1 ?
-        <></>
-      : 
+      {statusNum === 1 ?
         <div>
           <PersonnelReadBios personnelBios={personnelBios} />
-          <PersonnelReadHist personnelHist={null} />
-          <PersonnelReadLogs personnelLogs={null} />
-          <PersonnelReadShip personnelShip={null} />
+          <PersonnelReadHist personnelHist={personnelHist} />
+          <PersonnelReadLogs personnelLogs={personnelLogs} />
+          <PersonnelReadShip personnelShip={personnelShip} />
         </div>
+      : 
+        <></>
       }
           <StatusMessage statusNum={statusNum} />
     </div>
