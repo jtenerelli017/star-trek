@@ -113,6 +113,14 @@ html {
   background-repeat: repeat-y;
 }
 
+#vignette {
+  /* Display & Box Model */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
 #s1 {
   /* Color */
   color: lightgreen;
