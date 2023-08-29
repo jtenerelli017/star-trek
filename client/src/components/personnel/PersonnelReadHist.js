@@ -1,32 +1,32 @@
-function PersonnelReadHist(personnelHist) {
-    const hist = personnelHist.personnelHist;
+function PersonnelReadHist(props) {
+    const hist = props.personnelHist;
     return (
       <div className="personnel-read-table">
-        {/* <table>
-          <caption className="table-caption">List of Personnel</caption>
+        <table className="table">
+          <caption className="table-caption">Ship Roster: {props.name}</caption>
           <tbody>
             <tr>
-              <th>ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Gender</th>
-              <th>Species</th>
-              <th>Affiliation</th>
+              <th>Registry</th>
+              <th>Personnel ID</th>
+              <th>Start Date</th>
+              <th>Modified Date</th>
+              <th>End Date</th>
+              <th>Transfer Reason</th>
             </tr>
-            {l.map((val, key) => {
+            {hist.map((val, key) => {
               return (
-                <tr key={key} onClick={() => console.log(val.id)}>
-                  <td>{val.id}</td>
-                  <td>{val.first_name}</td>
-                  <td>{val.last_name}</td>
-                  <td>{val.gender}</td>
-                  <td>{val.species}</td>
-                  <td>{val.affiliation}</td>
+                <tr key={key}>
+                  <td>{val.starship_reg}</td>
+                  <td>{val.personnel_id}</td>
+                  <td>{val.date_start}</td>
+                  <td>{val.date_modified}</td>
+                  <td>{val.date_end}</td>
+                  <td>{val.reason}</td>
                 </tr>
               );
             })}
           </tbody>
-        </table> */}
+        </table>
       </div>
     );
   }

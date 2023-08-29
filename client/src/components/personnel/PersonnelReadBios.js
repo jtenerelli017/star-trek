@@ -1,5 +1,5 @@
-function PersonnelReadBios(personnelBios) {
-  const plist = personnelBios.personnelBios;
+function PersonnelReadBios(props) {
+  const plist = props.personnelBios;
   return (
     <div className="personnel-read-table">
       <table className="table">
@@ -15,7 +15,7 @@ function PersonnelReadBios(personnelBios) {
           </tr>
           {plist.map((val, key) => {
             return (
-              <tr key={key} onClick={() => console.log(val.id)}>
+              <tr key={key} onClick={() => props.getNewId(val.id)}>
                 <td>{val.id}</td>
                 <td>{val.first_name}</td>
                 <td>{val.last_name}</td>

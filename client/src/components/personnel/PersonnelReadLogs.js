@@ -1,32 +1,26 @@
-function PersonnelReadLogs(personnelLogs) {
-    const logs = personnelLogs.personnelLogs;
+function PersonnelReadLogs(props) {
+    const logs = props.personnelLogs;
     return (
       <div className="personnel-read-table">
-        {/* <table>
-          <caption className="table-caption">List of Personnel</caption>
+        <table className="table">
+          <caption className="table-caption">Captain's Logs: {props.name}</caption>
           <tbody>
             <tr>
-              <th>ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Gender</th>
-              <th>Species</th>
-              <th>Affiliation</th>
+              <th>Captain ID</th>
+              <th>Star Date</th>
+              <th>Message</th>
             </tr>
-            {l.map((val, key) => {
+            {logs.map((val, key) => {
               return (
-                <tr key={key} onClick={() => console.log(val.id)}>
-                  <td>{val.id}</td>
-                  <td>{val.first_name}</td>
-                  <td>{val.last_name}</td>
-                  <td>{val.gender}</td>
-                  <td>{val.species}</td>
-                  <td>{val.affiliation}</td>
+                <tr key={key}>
+                  <td>{val.captain_id}</td>
+                  <td>{val.star_date}</td>
+                  <td>{val.message}</td>
                 </tr>
               );
             })}
           </tbody>
-        </table> */}
+        </table>
       </div>
     );
   }
