@@ -14,42 +14,46 @@ const db = mysql.createConnection({
 });
 
 const isLegal = (arr) => {
-  let blacklist = "@#$%^&*()[]{};:\'\"/\\,";
+  let blacklist = "@#$%^&*()[]{};:'\"/\\,";
   for (let i = 0; i < arr.length; i++) {
-    if ((arr[i] === null) || (arr[i].length === 0) || (arr[i].charAt(0).localeCompare(" ") === 0)) {
+    if (
+      arr[i] === null ||
+      arr[i].length === 0 ||
+      arr[i].charAt(0).localeCompare(" ") === 0
+    ) {
       console.log("ERROR: Invalid argument(s).");
-      return(false)
+      return false;
     }
     for (let j = 0; j < arr[i].length; j++) {
       if (blacklist.includes(arr[i].charAt(j))) {
         console.log("ERROR: Invalid argument(s).");
-        return(false);
+        return false;
       }
     }
   }
-  return(true);
+  return true;
 };
 
 const reasonIsLegal = (str) => {
   if (str === null) {
-    return(true);
+    return true;
   }
   if (str.charAt(0).localeCompare(" ") === 0) {
     console.log("ERROR: Invalid argument(s).");
-    return(false)
+    return false;
   }
-  let blacklist = "@#$%^&*()[]{};:\'\"/\\,";
+  let blacklist = "@#$%^&*()[]{};:'\"/\\,";
   for (let i = 0; i < str.length; i++) {
     if (blacklist.includes(str.charAt(i))) {
       console.log("ERROR: Invalid argument(s).");
-      return(false);
+      return false;
     }
   }
-  return(true);
+  return true;
 };
 
 app.post("/createPersonnel", (req, res) => {
-  console.log(req);
+  console.log("Request to " + req.url);
 
   const first_name = req.body.first_name;
   const last_name = req.body.last_name;
@@ -63,25 +67,30 @@ app.post("/createPersonnel", (req, res) => {
   }
   if (!isLegal([first_name, last_name, gender, species, affiliation])) {
     res.send("error");
-  } else if (g.localeCompare("M") !== 0 && g.localeCompare("F") !== 0 && g.localeCompare("O") !== 0) {
+  } else if (
+    g.localeCompare("M") !== 0 &&
+    g.localeCompare("F") !== 0 &&
+    g.localeCompare("O") !== 0
+  ) {
     res.send("error");
-  } else db.query(
-    "INSERT INTO personnel (first_name, last_name, gender, species, affiliation) VALUES (?, ?, ?, ?, ?)",
-    [first_name, last_name, g, species, affiliation],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        res.send("error");
-      } else {
-        console.log(result);
-        res.send("success");
+  } else
+    db.query(
+      "INSERT INTO personnel (first_name, last_name, gender, species, affiliation) VALUES (?, ?, ?, ?, ?)",
+      [first_name, last_name, g, species, affiliation],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          res.send("error");
+        } else {
+          console.log(result);
+          res.send("success");
+        }
       }
-    }
-  );
+    );
 });
 
 app.post("/createStarship", (req, res) => {
-  console.log(req);
+  console.log("Request to " + req.url);
 
   const ship_reg = req.body.ship_reg;
   const ship_name = req.body.ship_name;
@@ -89,28 +98,29 @@ app.post("/createStarship", (req, res) => {
 
   if (!isLegal([ship_reg, ship_name, ship_class])) {
     res.send("error");
-  } else db.query(
-    "INSERT INTO starship_data (registry, name, class) VALUES (?, ?, ?)",
-    [ship_reg, ship_name, ship_class],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        if ((err.code).localeCompare('ER_DUP_ENTRY') === 0) {
-          console.log("exists");
-          res.send("exists");
+  } else
+    db.query(
+      "INSERT INTO starship_data (registry, name, class) VALUES (?, ?, ?)",
+      [ship_reg, ship_name, ship_class],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          if (err.code.localeCompare("ER_DUP_ENTRY") === 0) {
+            console.log("exists");
+            res.send("exists");
+          } else {
+            res.send("error");
+          }
         } else {
-          res.send("error");
+          console.log(result);
+          res.send("success");
         }
-      } else {
-        console.log(result);
-        res.send("success");
       }
-    }
-  );
+    );
 });
 
 app.post("/createRoster", (req, res) => {
-  console.log(req);
+  console.log("Request to " + req.url);
 
   const starship_reg = req.body.starship_reg;
   const personnel_id = req.body.personnel_id;
@@ -122,36 +132,106 @@ app.post("/createRoster", (req, res) => {
     res.send("error");
   } else if (!reasonIsLegal(date_end) && !reasonIsLegal(reason)) {
     res.send("error");
-  } else db.query(
-    "INSERT INTO starship_roster (starship_reg, personnel_id, date_start, date_end, reason) VALUES (?, ?, ?, ?, ?)",
-    [starship_reg, personnel_id, date_start, date_end, reason],
-    (err, result) => {
-      if (err) {
-        console.log(err);
-        if ((err.code).localeCompare('ER_DUP_ENTRY') === 0) {
-          console.log("exists");
-          res.send("exists");
+  } else
+    db.query(
+      "INSERT INTO starship_roster (starship_reg, personnel_id, date_start, date_end, reason) VALUES (?, ?, ?, ?, ?)",
+      [starship_reg, personnel_id, date_start, date_end, reason],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          if (err.code.localeCompare("ER_DUP_ENTRY") === 0) {
+            console.log("exists");
+            res.send("exists");
+          } else {
+            res.send("error");
+          }
         } else {
-          res.send("error");
+          console.log(result);
+          res.send("success");
         }
-      } else {
-        console.log(result);
-        res.send("success");
       }
-    }
-  );
+    );
 });
 
-app.get('/readPersonnelBios', (req, res) => {
-  console.log(req);
+app.get("/readPersonnelBiosId", (req, res) => {
+  console.log("Request to " + req.url);
+
+  db.query("SELECT id FROM personnel LIMIT 0,1", (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/readPersonnelBiosName", (req, res) => {
+  console.log("Request to " + req.url);
+
+  const id = req.query.id;
+
+  db.query("SELECT first_name, last_name FROM star_trek.personnel WHERE id=?", [id], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/readPersonnelBios", (req, res) => {
+  console.log("Request to " + req.url);
+
   db.query("SELECT * FROM personnel", (err, result) => {
     if (err) {
-      console.log(err)
+      console.log(err);
     } else {
-      res.send(result)
+      res.send(result);
     }
-  })
-})
+  });
+});
+
+app.get("/readPersonnelHist", (req, res) => {
+  console.log("Request to " + req.url);
+
+  const id = req.query.id;
+
+  db.query("SELECT * FROM starship_roster WHERE personnel_id=?", [id], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/readPersonnelLogs", (req, res) => {
+  console.log("Request to " + req.url);
+
+  const id = req.query.id;
+
+  db.query("SELECT * FROM captain_log_data WHERE captain_id=?", [id], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/readPersonnelShip", (req, res) => {
+  console.log("Request to " + req.url);
+  
+  const id = req.query.id;
+
+  db.query("SELECT * FROM captain_log_data WHERE captain_id=?", [id], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
 
 app.listen(port, () => {
   console.log("Server running on port 3001");
