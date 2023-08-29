@@ -1,5 +1,5 @@
-function PersonnelReadShip(personnelShip) {
-    const ship = personnelShip.personnelShip;
+function PersonnelReadShip(props) {
+    const ship = props.personnelShip;
     return (
       <div className="personnel-read-table">
         {/* <table>
