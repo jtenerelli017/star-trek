@@ -117,7 +117,7 @@ function PersonnelRead() {
           <PersonnelReadBios personnelBios={personnelBios} getNewId={getNewId}/>
           <PersonnelReadHist personnelHist={personnelHist} name={name}/>
           <PersonnelReadLogs personnelLogs={personnelLogs} name={name} />
-          {/* <PersonnelReadShip personnelShip={personnelShip} name={name} /> */}
+          <PersonnelReadShip personnelShip={personnelShip} name={name} />
         </div>
       : 
         <></>
