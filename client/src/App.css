@@ -46,7 +46,6 @@ html {
 .personnel-read-table {
   /* Display & Box Model */
   display: flex;
-  padding-top: 5px;
   padding-bottom: 5px;
 }
 
@@ -82,7 +81,7 @@ html {
 #add-item {
   /* Display & Box Model */
   padding-top: 40px;
-  padding-bottom: 5px;
+  padding-bottom: 15px;
 }
 
 #app-container {
@@ -121,25 +120,14 @@ html {
   transform: translateX(-50%) translateY(-50%);
 }
 
-#s1 {
-  /* Color */
-  color: lightgreen;
-}
-
-#s2 {
-  /* Color */
-  color: lightpink;
-}
-
-#s3 {
-  /* Color */
-  color: lightcoral;
-}
-
 #table-select-radio-container {
   /* Display & Box Model */
   display: inline;
   padding-bottom: 20px;
+}
+
+#test {
+  color: coral;
 }
 
 #title {
@@ -149,4 +137,6 @@ html {
   /* Text */
   text-align: center;
   font-size: 60px;
+
+  display: none;
 }
