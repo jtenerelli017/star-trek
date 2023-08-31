@@ -22,38 +22,44 @@ function PersonnelRead() {
   const getFirstId = () => {
     Axios.get("/readPersonnelBiosId")
       .then((res) => {
-        getName(res.data[0]["id"])
-      }).catch(err => {
-        console.log(err)
+        getName(res.data[0]["id"]);
+      })
+      .catch((err) => {
+        console.log(err);
         setStatusNum(2);
       });
-  }
+  };
 
   const getNewId = (id) => {
     getName(id);
-  }
+  };
 
   const getName = (id) => {
     Axios.get("/readPersonnelBiosName", {
       params: {
-        id: id
-      }
+        id: id,
+      },
     })
       .then((res) => {
-        getPersonnelBios(id, res.data[0].first_name + " " + res.data[0].last_name);
-      }).catch(err => {
-        console.log(err)
+        getPersonnelBios(
+          id,
+          res.data[0].first_name + " " + res.data[0].last_name
+        );
+      })
+      .catch((err) => {
+        console.log(err);
         setStatusNum(2);
       });
-  }
-  
+  };
+
   const getPersonnelBios = (id, name) => {
     Axios.get("/readPersonnelBios")
       .then((res) => {
         setPersonnelBios(res.data);
-        getPersonnelHist(id, name)
-      }).catch(err => {
-        console.log(err)
+        getPersonnelHist(id, name);
+      })
+      .catch((err) => {
+        console.log(err);
         setStatusNum(2);
       });
   };
@@ -61,14 +67,15 @@ function PersonnelRead() {
   const getPersonnelHist = (id, name) => {
     Axios.get("/readPersonnelHist", {
       params: {
-        id: id
-      }
+        id: id,
+      },
     })
       .then((res) => {
-        setPersonnelHist(res.data); 
-        getPersonnelLogs(id, name)
-      }).catch(err => {
-        console.log(err)
+        setPersonnelHist(res.data);
+        getPersonnelLogs(id, name);
+      })
+      .catch((err) => {
+        console.log(err);
         setStatusNum(2);
       });
   };
@@ -76,14 +83,15 @@ function PersonnelRead() {
   const getPersonnelLogs = (id, name) => {
     Axios.get("/readPersonnelLogs", {
       params: {
-        id: id
-      }
+        id: id,
+      },
     })
       .then((res) => {
         setPersonnelLogs(res.data);
         getPersonnelShip(id, name);
-      }).catch(err => {
-        console.log(err)
+      })
+      .catch((err) => {
+        console.log(err);
         setStatusNum(2);
       });
   };
@@ -91,40 +99,42 @@ function PersonnelRead() {
   const getPersonnelShip = (id, name) => {
     Axios.get("/readPersonnelShip", {
       params: {
-        id: id
-      }
+        id: id,
+      },
     })
       .then((res) => {
         setPersonnelShip(res.data);
         setName(name);
         setStatusNum(1);
-      }).catch(err => {
-        console.log(err)
+      })
+      .catch((err) => {
+        console.log(err);
         setStatusNum(2);
       });
   };
 
   return (
     <div id="personnel-container" className="align">
-      <p className="instructions">
-        Read a list of all personnel here.
-      </p>
+      <p className="instructions">Read a list of all personnel here.</p>
       <div className="generate">
         <button onClick={getFirstId}>Generate List</button>
       </div>
-      {statusNum === 1 ?
+      {statusNum === 1 ? (
         <div>
-          <PersonnelReadBios personnelBios={personnelBios} getNewId={getNewId}/>
-          <PersonnelReadHist personnelHist={personnelHist} name={name}/>
+          <PersonnelReadBios
+            personnelBios={personnelBios}
+            getNewId={getNewId}
+          />
+          <PersonnelReadHist personnelHist={personnelHist} name={name} />
           <PersonnelReadLogs personnelLogs={personnelLogs} name={name} />
           <PersonnelReadShip personnelShip={personnelShip} name={name} />
         </div>
-      : 
+      ) : (
         <></>
-      }
-          <StatusMessage statusNum={statusNum} />
+      )}
+      <StatusMessage statusNum={statusNum} />
     </div>
-  )
-};
+  );
+}
 
 export default PersonnelRead;
