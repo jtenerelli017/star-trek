@@ -16,11 +16,15 @@ function PersonnelRead() {
   // 0 = nothing
   // 1 = success
   // 2 = network error
-  // 3 = user error
-  // 4 = data exists
+  // 3 = invalid argument
+  // 4 = no personnel entry exists
+  // 5 = chosen personnel entry no longer exists
+  // 6 = loading
+  // anything else: unknown error
 
   const getFirstId = () => {
-    Axios.get("/readPersonnelBiosId")
+    setStatusNum(6);
+    Axios.get("/readFirstId")
       .then((res) => {
         getName(res.data[0]["id"]);
       })
@@ -31,6 +35,7 @@ function PersonnelRead() {
   };
 
   const getNewId = (id) => {
+    setStatusNum(6);
     getName(id);
   };
 
@@ -119,6 +124,7 @@ function PersonnelRead() {
       <div className="generate">
         <button onClick={getFirstId}>Generate List</button>
       </div>
+      <StatusMessage statusNum={statusNum} />
       {statusNum === 1 ? (
         <div>
           <PersonnelReadBios
@@ -132,7 +138,6 @@ function PersonnelRead() {
       ) : (
         <></>
       )}
-      <StatusMessage statusNum={statusNum} />
     </div>
   );
 }
