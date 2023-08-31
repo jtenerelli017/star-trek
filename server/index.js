@@ -153,7 +153,7 @@ app.post("/createRoster", (req, res) => {
     );
 });
 
-app.get("/readPersonnelBiosId", (req, res) => {
+app.get("/readFirstId", (req, res) => {
   console.log("Request to " + req.url);
 
   db.query("SELECT id FROM personnel LIMIT 0,1", (err, result) => {
