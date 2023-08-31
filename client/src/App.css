@@ -46,7 +46,6 @@ html {
 .personnel-read-table {
   /* Display & Box Model */
   display: flex;
-  padding-bottom: 5px;
 }
 
 .prompt-label {
