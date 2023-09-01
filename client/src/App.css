@@ -8,6 +8,12 @@ html {
   background-color: black;
 }
 
+tr {
+  /* Display & Box Model */
+  vertical-align: middle;
+  height: 45px;
+}
+
 /* CLASSES */
 
 .align {
@@ -35,7 +41,7 @@ html {
   max-width: 950px;
   padding-left: 20px;
   padding-right: 20px;
-  
+
   /* Color */
   color: lightgray;
 
