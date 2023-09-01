@@ -1,5 +1,5 @@
-import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import DataSelect from "./components/DataSelect";
 import React from "react";
 import star_trek_jpg from "./star-trek.jpg"
