@@ -17,7 +17,7 @@ function PersonnelReadHist(props) {
             </tr>
             {(props.hist).map((val, key) => {
               return (
-                <tr>
+                <tr key={key}>
                   <td>{val.starship_reg}</td>
                   <td>{val.personnel_id}</td>
                   <td>{val.date_start}</td>
