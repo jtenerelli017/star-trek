@@ -4,7 +4,7 @@ function PersonnelReadBios(props) {
   const len = props.bios.length;
   return (
     <div className="personnel-read-table">
-      <table className="table special-table">
+      <table className="table">
         <caption className="table-caption">List of Personnel</caption>
         <tbody>
           <tr>
