@@ -7,10 +7,10 @@ import PersonnelReadShip from "./PersonnelReadShip";
 import StatusMessage from "../StatusMessage";
 
 function PersonnelRead() {
-  const [personnelBios, setPersonnelBios] = useState(null);
-  const [personnelHist, setPersonnelHist] = useState(null);
-  const [personnelLogs, setPersonnelLogs] = useState(null);
-  const [personnelShip, setPersonnelShip] = useState(null);
+  const [bios, setBios] = useState(null);
+  const [hist, setHist] = useState(null);
+  const [logs, setLogs] = useState(null);
+  const [ship, setShip] = useState(null);
   const [name, setName] = useState(null);
   const [statusNum, setStatusNum] = useState(0);
   // 0 = nothing
@@ -26,7 +26,11 @@ function PersonnelRead() {
     setStatusNum(6);
     Axios.get("/readFirstId")
       .then((res) => {
-        getName(res.data[0]["id"]);
+        if((res.data).length !== 0) {
+          getName(res.data[0]["id"]);
+        } else {
+          setStatusNum(4);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -46,10 +50,14 @@ function PersonnelRead() {
       },
     })
       .then((res) => {
-        getPersonnelBios(
-          id,
-          res.data[0].first_name + " " + res.data[0].last_name
-        );
+        if((res.data).length !== 0) {
+          getBios(
+            id,
+            res.data[0].first_name + " " + res.data[0].last_name
+          );
+        } else {
+          setStatusNum(5);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -57,11 +65,11 @@ function PersonnelRead() {
       });
   };
 
-  const getPersonnelBios = (id, name) => {
+  const getBios = (id, name) => {
     Axios.get("/readPersonnelBios")
       .then((res) => {
-        setPersonnelBios(res.data);
-        getPersonnelHist(id, name);
+        setBios(res.data);
+        getHist(id, name);
       })
       .catch((err) => {
         console.log(err);
@@ -69,15 +77,15 @@ function PersonnelRead() {
       });
   };
 
-  const getPersonnelHist = (id, name) => {
+  const getHist = (id, name) => {
     Axios.get("/readPersonnelHist", {
       params: {
         id: id,
       },
     })
       .then((res) => {
-        setPersonnelHist(res.data);
-        getPersonnelLogs(id, name);
+        setHist(res.data);
+        getLogs(id, name);
       })
       .catch((err) => {
         console.log(err);
@@ -85,15 +93,15 @@ function PersonnelRead() {
       });
   };
 
-  const getPersonnelLogs = (id, name) => {
+  const getLogs = (id, name) => {
     Axios.get("/readPersonnelLogs", {
       params: {
         id: id,
       },
     })
       .then((res) => {
-        setPersonnelLogs(res.data);
-        getPersonnelShip(id, name);
+        setLogs(res.data);
+        getShip(id, name);
       })
       .catch((err) => {
         console.log(err);
@@ -101,14 +109,14 @@ function PersonnelRead() {
       });
   };
 
-  const getPersonnelShip = (id, name) => {
+  const getShip = (id, name) => {
     Axios.get("/readPersonnelShip", {
       params: {
         id: id,
       },
     })
       .then((res) => {
-        setPersonnelShip(res.data);
+        setShip(res.data);
         setName(name);
         setStatusNum(1);
       })
@@ -128,12 +136,12 @@ function PersonnelRead() {
       {statusNum === 1 ? (
         <div>
           <PersonnelReadBios
-            personnelBios={personnelBios}
+            bios={bios}
             getNewId={getNewId}
           />
-          <PersonnelReadHist personnelHist={personnelHist} name={name} />
-          <PersonnelReadLogs personnelLogs={personnelLogs} name={name} />
-          <PersonnelReadShip personnelShip={personnelShip} name={name} />
+          <PersonnelReadHist name={name} hist={hist} />
+          <PersonnelReadLogs name={name} logs={logs} />
+          <PersonnelReadShip name={name} ship={ship} />
         </div>
       ) : (
         <></>
