@@ -1,5 +1,4 @@
 function PersonnelReadBios(props) {
-  const plist = props.personnelBios;
   return (
     <div className="personnel-read-table">
       <table className="table">
@@ -13,7 +12,7 @@ function PersonnelReadBios(props) {
             <th>Species</th>
             <th>Affiliation</th>
           </tr>
-          {plist.map((val, key) => {
+          {(props.bios).map((val, key) => {
             return (
               <tr key={key} onClick={() => props.getNewId(val.id)}>
                 <td>{val.id}</td>

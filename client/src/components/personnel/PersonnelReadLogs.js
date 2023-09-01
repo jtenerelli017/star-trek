@@ -1,8 +1,5 @@
 function PersonnelReadLogs(props) {
-    const logs = props.personnelLogs;
-    const isCaptain = props.isCaptain;
-    
-    return !isCaptain ? <></>
+    return !props.isCaptain ? <></>
       : <div className="personnel-read-table">
           <table className="table">
             <caption className="table-caption">Captain's Logs: {props.name}</caption>
@@ -12,7 +9,7 @@ function PersonnelReadLogs(props) {
                 <th>Star Date</th>
                 <th>Message</th>
               </tr>
-              {logs.map((val, key) => {
+              {(props.logs).map((val, key) => {
                 return (
                   <tr key={key}>
                     <td>{val.captain_id}</td>

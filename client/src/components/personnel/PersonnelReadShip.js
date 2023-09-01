@@ -1,5 +1,4 @@
 function PersonnelReadShip(props) {
-    const ship = props.personnelShip;
     return (
       <></>
     );

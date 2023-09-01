@@ -1,5 +1,4 @@
 function PersonnelReadHist(props) {
-    const hist = props.personnelHist;
     return (
       <div className="personnel-read-table">
         <table className="table">
@@ -13,7 +12,7 @@ function PersonnelReadHist(props) {
               <th>End Date</th>
               <th>Transfer Reason</th>
             </tr>
-            {hist.map((val, key) => {
+            {(props.hist).map((val, key) => {
               return (
                 <tr key={key}>
                   <td>{val.starship_reg}</td>
