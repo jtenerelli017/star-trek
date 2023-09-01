@@ -27,7 +27,7 @@ function PersonnelReadHist(props) {
                 </tr>
               );
             })}
-            <Padding len={len} />
+            <Padding len={len} cols={6} />
           </tbody>
         </table>
       </div>

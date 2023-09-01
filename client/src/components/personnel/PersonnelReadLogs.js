@@ -18,14 +18,14 @@ function PersonnelReadLogs(props) {
           </tr>
           {props.logs.map((val, key) => {
             return (
-              <tr>
+              <tr key={key}>
                 <td>{val.captain_id}</td>
                 <td>{val.star_date}</td>
                 <td>{val.message}</td>
               </tr>
             );
           })}
-          <Padding len={len} />
+          <Padding len={len} cols={3} />
         </tbody>
       </table>
     </div>
