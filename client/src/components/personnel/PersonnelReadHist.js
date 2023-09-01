@@ -1,4 +1,7 @@
+import Padding from "./Padding";
+
 function PersonnelReadHist(props) {
+  const len = props.hist.length;
     return (
       <div className="personnel-read-table">
         <table className="table">
@@ -14,7 +17,7 @@ function PersonnelReadHist(props) {
             </tr>
             {(props.hist).map((val, key) => {
               return (
-                <tr key={key}>
+                <tr>
                   <td>{val.starship_reg}</td>
                   <td>{val.personnel_id}</td>
                   <td>{val.date_start}</td>
@@ -24,6 +27,7 @@ function PersonnelReadHist(props) {
                 </tr>
               );
             })}
+            <Padding len={len} />
           </tbody>
         </table>
       </div>

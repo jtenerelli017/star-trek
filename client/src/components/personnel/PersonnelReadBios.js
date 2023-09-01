@@ -1,7 +1,10 @@
+import Padding from "./Padding";
+
 function PersonnelReadBios(props) {
+  const len = props.bios.length;
   return (
     <div className="personnel-read-table">
-      <table className="table">
+      <table className="table special-table">
         <caption className="table-caption">List of Personnel</caption>
         <tbody>
           <tr>
@@ -12,9 +15,12 @@ function PersonnelReadBios(props) {
             <th>Species</th>
             <th>Affiliation</th>
           </tr>
-          {(props.bios).map((val, key) => {
+          {props.bios.map((val, key) => {
             return (
-              <tr key={key} onClick={() => props.getNewId(val.id)}>
+              <tr
+                key={key}
+                onClick={() => props.getNewId(val.id)}
+              >
                 <td>{val.id}</td>
                 <td>{val.first_name}</td>
                 <td>{val.last_name}</td>
@@ -24,6 +30,7 @@ function PersonnelReadBios(props) {
               </tr>
             );
           })}
+          <Padding len={len} />
         </tbody>
       </table>
     </div>
