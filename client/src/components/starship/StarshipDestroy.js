@@ -1,7 +1,5 @@
 function StarshipDestroy() {
-    return (
-      <></>
-    );
-  }
-  
-  export default StarshipDestroy;
+  return <></>;
+}
+
+export default StarshipDestroy;

@@ -8,14 +8,14 @@ html {
   background-color: black;
 }
 
+table {
+  max-width: 700px;
+}
+
 tr {
   /* Display & Box Model */
   vertical-align: middle;
   height: 45px;
-}
-
-table {
-  max-width: 700px;
 }
 
 /* CLASSES */

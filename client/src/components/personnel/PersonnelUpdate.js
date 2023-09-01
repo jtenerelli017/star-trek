@@ -1,7 +1,5 @@
 function PersonnelUpdate() {
-  return (
-    <></>
-  );
+  return <></>;
 }
 
 export default PersonnelUpdate;

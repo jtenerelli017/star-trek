@@ -1,7 +1,5 @@
 function RosterDestroy() {
-    return (
-      <></>
-    );
-  }
-  
-  export default RosterDestroy;
+  return <></>;
+}
+
+export default RosterDestroy;

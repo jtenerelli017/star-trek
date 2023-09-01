@@ -17,10 +17,7 @@ function PersonnelReadBios(props) {
           </tr>
           {props.bios.map((val, key) => {
             return (
-              <tr
-                key={key}
-                onClick={() => props.getNewId(val.id)}
-              >
+              <tr key={key} onClick={() => props.getNewId(val.id)}>
                 <td>{val.id}</td>
                 <td>{val.first_name}</td>
                 <td>{val.last_name}</td>

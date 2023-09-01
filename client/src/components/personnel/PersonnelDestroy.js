@@ -1,7 +1,5 @@
 function PersonnelDestroy() {
-    return (
-      <></>
-    );
-  }
-  
-  export default PersonnelDestroy;
+  return <></>;
+}
+
+export default PersonnelDestroy;

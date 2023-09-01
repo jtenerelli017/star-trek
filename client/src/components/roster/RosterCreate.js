@@ -54,14 +54,15 @@ function RosterCreate() {
   return (
     <div id="personnel-container" className="align">
       <p className="instructions">
-        Create a starship roster entry here. Personnel ID and starship registries must already exist. Starting date must be unique
-        per personnel/registry pair. Ending date and reason can be empty.
-        Dates must be in "Star Date" format (i.e. 42117.3).
+        Create a starship roster entry here. Personnel ID and starship
+        registries must already exist. Starting date must be unique per
+        personnel/registry pair. Ending date and reason can be empty. Dates must
+        be in "Star Date" format (i.e. 42117.3).
       </p>
       <p className="instructions">
         Arguments cannot 1) be empty, 2) be more than 45 characters long, and/or
-        3) start with a SPACE (unless the field is allowed to be empty). Prohibited characters include: @ # $ % ^ & * ( )
-        [ ] {} ; : ' " / \ ,
+        3) start with a SPACE (unless the field is allowed to be empty).
+        Prohibited characters include: @ # $ % ^ & * ( ) [ ] {} ; : ' " / \ ,
       </p>
       <div id="prompts-container" className="align">
         <Form.Label className="prompt-label">

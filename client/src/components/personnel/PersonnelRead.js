@@ -27,7 +27,7 @@ function PersonnelRead() {
     setStatusNum(6);
     Axios.get("/readFirstId")
       .then((res) => {
-        if((res.data).length !== 0) {
+        if (res.data.length !== 0) {
           getName(res.data[0]["id"]);
         } else {
           setStatusNum(4);
@@ -47,7 +47,7 @@ function PersonnelRead() {
       },
     })
       .then((res) => {
-        if((res.data).length !== 0) {
+        if (res.data.length !== 0) {
           getName(res.data[0]["id"]);
         } else {
           setStatusNum(5);
@@ -66,7 +66,7 @@ function PersonnelRead() {
       },
     })
       .then((res) => {
-        if((res.data).length !== 0) {
+        if (res.data.length !== 0) {
           getCapStatus(
             id,
             res.data[0].first_name + " " + res.data[0].last_name
@@ -87,19 +87,19 @@ function PersonnelRead() {
         id: id,
       },
     })
-    .then((res) => {
-      if((res.data).length !== 0) {
-        setIsCaptain(true)
-      } else {
-        setIsCaptain(false);
-      }
-      getBios(id, name);
-    })
-    .catch((err) => {
-      console.log(err);
-      setStatusNum(2);
-    });
-  }
+      .then((res) => {
+        if (res.data.length !== 0) {
+          setIsCaptain(true);
+        } else {
+          setIsCaptain(false);
+        }
+        getBios(id, name);
+      })
+      .catch((err) => {
+        console.log(err);
+        setStatusNum(2);
+      });
+  };
 
   const getBios = (id, name) => {
     Axios.get("/readPersonnelBios")
@@ -164,20 +164,23 @@ function PersonnelRead() {
 
   return (
     <div id="personnel-container" className="align">
-      <p className="instructions">Read a list of all personnel here. Click "Generate List" to generate a list of personnel found in the database.
-      Other data, including biographical data, ship transfer history, captain's logs (if the personnel is currently a captain), and a ship's name and its captain's name if
-      the personnel is serving on that ship. Upon generation, the "other" data corresponds to the first personnel in the list. Click on a personnel entry to show "other" data
-      corresponding to that personnel. If an error occurs, try re-generating the list with the button below.</p>
+      <p className="instructions">
+        Read a list of all personnel here. Click "Generate List" to generate a
+        list of personnel found in the database. Other data, including
+        biographical data, ship transfer history, captain's logs (if the
+        personnel is currently a captain), and a ship's name and its captain's
+        name if the personnel is serving on that ship. Upon generation, the
+        "other" data corresponds to the first personnel in the list. Click on a
+        personnel entry to show "other" data corresponding to that personnel. If
+        an error occurs, try re-generating the list with the button below.
+      </p>
       <div className="generate">
         <button onClick={getFirstId}>Generate List</button>
       </div>
       <StatusMessage statusNum={statusNum} />
       {statusNum === 1 ? (
         <div>
-          <PersonnelReadBios
-            bios={bios}
-            getNewId={getNewId}
-          />
+          <PersonnelReadBios bios={bios} getNewId={getNewId} />
           <PersonnelReadHist name={name} hist={hist} />
           <PersonnelReadLogs name={name} logs={logs} isCaptain={isCaptain} />
           <PersonnelReadShip name={name} ship={ship} />

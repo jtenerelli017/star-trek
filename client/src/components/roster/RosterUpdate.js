@@ -1,7 +1,5 @@
 function RosterUpdate() {
-    return (
-      <></>
-    );
-  }
-  
-  export default RosterUpdate;
+  return <></>;
+}
+
+export default RosterUpdate;

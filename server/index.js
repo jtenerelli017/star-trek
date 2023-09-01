@@ -184,13 +184,17 @@ app.get("/readPersonnelBiosName", (req, res) => {
 
   const id = req.query.id;
 
-  db.query("SELECT first_name, last_name FROM personnel WHERE id=?", [id], (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
+  db.query(
+    "SELECT first_name, last_name FROM personnel WHERE id=?",
+    [id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
     }
-  });
+  );
 });
 
 app.get("/readPersonnelBiosCap", (req, res) => {
@@ -198,13 +202,17 @@ app.get("/readPersonnelBiosCap", (req, res) => {
 
   const id = req.query.id;
 
-  db.query("SELECT * FROM personnel_rank WHERE personnel_id=? AND rank_id=5 AND date_dropped IS NULL", [id], (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
+  db.query(
+    "SELECT * FROM personnel_rank WHERE personnel_id=? AND rank_id=5 AND date_dropped IS NULL",
+    [id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
     }
-  });
+  );
 });
 
 app.get("/readPersonnelBios", (req, res) => {
@@ -224,13 +232,17 @@ app.get("/readPersonnelHist", (req, res) => {
 
   const id = req.query.id;
 
-  db.query("SELECT * FROM starship_roster WHERE personnel_id=?", [id], (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
+  db.query(
+    "SELECT * FROM starship_roster WHERE personnel_id=?",
+    [id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
     }
-  });
+  );
 });
 
 app.get("/readPersonnelLogs", (req, res) => {
@@ -238,27 +250,35 @@ app.get("/readPersonnelLogs", (req, res) => {
 
   const id = req.query.id;
 
-  db.query("SELECT * FROM captain_log_data WHERE captain_id=?", [id], (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
+  db.query(
+    "SELECT * FROM captain_log_data WHERE captain_id=?",
+    [id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
     }
-  });
+  );
 });
 
 app.get("/readPersonnelShip", (req, res) => {
   console.log("Request to " + req.url);
-  
+
   const id = req.query.id;
 
-  db.query("SELECT * FROM captain_log_data WHERE captain_id=?", [id], (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(result);
+  db.query(
+    "SELECT * FROM captain_log_data WHERE captain_id=?",
+    [id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(result);
+      }
     }
-  });
+  );
 });
 
 app.listen(port, () => {

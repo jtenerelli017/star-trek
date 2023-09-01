@@ -1,7 +1,5 @@
 function StarshipUpdate() {
-    return (
-      <></>
-    );
-  }
-  
-  export default StarshipUpdate;
+  return <></>;
+}
+
+export default StarshipUpdate;
