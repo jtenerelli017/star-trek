@@ -165,12 +165,40 @@ app.get("/readFirstId", (req, res) => {
   });
 });
 
+app.get("/readNewId", (req, res) => {
+  console.log("Request to " + req.url);
+
+  const id = req.query.id;
+
+  db.query("SELECT id FROM personnel WHERE id=?", [id], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 app.get("/readPersonnelBiosName", (req, res) => {
   console.log("Request to " + req.url);
 
   const id = req.query.id;
 
-  db.query("SELECT first_name, last_name FROM star_trek.personnel WHERE id=?", [id], (err, result) => {
+  db.query("SELECT first_name, last_name FROM personnel WHERE id=?", [id], (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
+app.get("/readPersonnelBiosCap", (req, res) => {
+  console.log("Request to " + req.url);
+
+  const id = req.query.id;
+
+  db.query("SELECT * FROM personnel_rank WHERE personnel_id=? AND rank_id=5 AND date_dropped IS NULL", [id], (err, result) => {
     if (err) {
       console.log(err);
     } else {
