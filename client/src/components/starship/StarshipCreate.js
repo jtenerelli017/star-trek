@@ -25,7 +25,6 @@ function StarshipCreate() {
         let result = res.data;
         if (result.localeCompare("success") === 0) {
           setStatusNum(1);
-          console.log("Success");
           // clear input forms
           let forms = document.getElementsByClassName("input");
           for (let i = 0; i < forms.length; i++) {
@@ -36,14 +35,11 @@ function StarshipCreate() {
           setShipClass(null);
         } else if (result.localeCompare("exists") === 0) {
           setStatusNum(4);
-          console.log("Error");
         } else {
           setStatusNum(3);
-          console.log("Error");
         }
       })
       .catch((err) => {
-        console.log("Error");
         setStatusNum(2);
       });
   };

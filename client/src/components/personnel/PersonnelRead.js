@@ -34,7 +34,6 @@ function PersonnelRead() {
         }
       })
       .catch((err) => {
-        console.log(err);
         setStatusNum(2);
       });
   };
@@ -54,7 +53,6 @@ function PersonnelRead() {
         }
       })
       .catch((err) => {
-        console.log(err);
         setStatusNum(2);
       });
   };
@@ -76,7 +74,6 @@ function PersonnelRead() {
         }
       })
       .catch((err) => {
-        console.log(err);
         setStatusNum(2);
       });
   };
@@ -96,7 +93,6 @@ function PersonnelRead() {
         getBios(id, name);
       })
       .catch((err) => {
-        console.log(err);
         setStatusNum(2);
       });
   };
@@ -108,7 +104,6 @@ function PersonnelRead() {
         getHist(id, name);
       })
       .catch((err) => {
-        console.log(err);
         setStatusNum(2);
       });
   };
@@ -124,7 +119,6 @@ function PersonnelRead() {
         getLogs(id, name);
       })
       .catch((err) => {
-        console.log(err);
         setStatusNum(2);
       });
   };
@@ -140,7 +134,6 @@ function PersonnelRead() {
         getShip(id, name);
       })
       .catch((err) => {
-        console.log(err);
         setStatusNum(2);
       });
   };
@@ -157,7 +150,6 @@ function PersonnelRead() {
         setStatusNum(1);
       })
       .catch((err) => {
-        console.log(err);
         setStatusNum(2);
       });
   };

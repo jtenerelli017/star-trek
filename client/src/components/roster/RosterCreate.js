@@ -29,7 +29,6 @@ function RosterCreate() {
         let result = res.data;
         if (result.localeCompare("success") === 0) {
           setStatusNum(1);
-          console.log("Success");
           // clear input forms
           let forms = document.getElementsByClassName("input");
           for (let i = 0; i < forms.length; i++) {
@@ -42,11 +41,9 @@ function RosterCreate() {
           setReason(null);
         } else {
           setStatusNum(3);
-          console.log("Error");
         }
       })
       .catch((err) => {
-        console.log(err);
         setStatusNum(2);
       });
   };
