@@ -39,6 +39,12 @@ function StatusMessage(props) {
         Loading...
       </p>
     </div>
+  ) : num === 7 ? (
+    <div>
+      <p className="status" style={{ color: "orangered" }}>
+        ERROR: Data with supplied argument does not exist.
+      </p>
+    </div>
   ) : (
     <div>
       <p className="status" style={{ color: "red" }}>
