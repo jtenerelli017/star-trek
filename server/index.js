@@ -52,6 +52,19 @@ const reasonIsLegal = (str) => {
   return true;
 };
 
+const isNumber = (str) => {
+  for (let i = 0; i < str.length; i++) {
+    let blacklist = "0123456789";
+    if (i === 0) {
+      blacklist = "123456789";
+    }
+    if (!blacklist.includes(str.charAt(i))) {
+      return false;
+    }
+  }
+  return true;
+};
+
 app.post("/createPersonnel", (req, res) => {
   console.log("Request to " + req.url);
 
@@ -279,6 +292,33 @@ app.get("/readPersonnelShip", (req, res) => {
       }
     }
   );
+});
+
+app.delete("/destroyPersonnel", (req, res) => {
+  console.log("Request to " + req.url);
+
+  const id = req.query.id;
+
+  if (isLegal([String(id)])) {
+    if (isNumber(String(id))) {
+      db.query("DELETE FROM personnel WHERE id=?", [id], (err, result) => {
+        if (err) {
+          console.log(err);
+          res.send("unknown");
+        } else {
+          if(result.affectedRows > 0) {
+            res.send("success");
+          } else {
+            res.send("dne");
+          }
+        }
+      });
+    } else {
+      res.send("illegal");
+    }
+  } else {
+    res.send("illegal");
+  }
 });
 
 app.listen(port, () => {
