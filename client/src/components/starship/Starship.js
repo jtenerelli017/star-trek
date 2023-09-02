@@ -1,7 +1,6 @@
 import { useState } from "react";
 import StarshipCreate from "./StarshipCreate";
 import StarshipDestroy from "./StarshipDestroy";
-import StarshipUpdate from "./StarshipUpdate";
 
 function Starship() {
   const [crud, setCrud] = useState(0);
@@ -11,9 +10,6 @@ function Starship() {
       <div id="crud-buttons-container">
         <button type="radio" onClick={() => setCrud(0)}>
           Create
-        </button>
-        <button type="radio" onClick={() => setCrud(1)}>
-          Update
         </button>
         <button type="radio" onClick={() => setCrud(2)}>
           Destroy
@@ -25,13 +21,6 @@ function Starship() {
             <b>Create Starship Entry</b>
           </p>
           <StarshipCreate />
-        </div>
-      ) : crud === 1 ? (
-        <div>
-          <p className="header">
-            <b>Update Starship Entry</b>
-          </p>
-          <StarshipUpdate />
         </div>
       ) : (
         <div>

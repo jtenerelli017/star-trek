@@ -1,7 +1,6 @@
 import { useState } from "react";
 import RosterCreate from "./RosterCreate";
 import RosterDestroy from "./RosterDestroy";
-import RosterUpdate from "./RosterUpdate";
 
 function Roster() {
   const [crud, setCrud] = useState(0);
@@ -11,9 +10,6 @@ function Roster() {
       <div id="crud-buttons-container">
         <button type="radio" onClick={() => setCrud(0)}>
           Create
-        </button>
-        <button type="radio" onClick={() => setCrud(1)}>
-          Update
         </button>
         <button type="radio" onClick={() => setCrud(2)}>
           Destroy
@@ -25,13 +21,6 @@ function Roster() {
             <b>Create Roster Entry</b>
           </p>
           <RosterCreate />
-        </div>
-      ) : crud === 1 ? (
-        <div>
-          <p className="header">
-            <b>Update Roster Entry</b>
-          </p>
-          <RosterUpdate />
         </div>
       ) : (
         <div>

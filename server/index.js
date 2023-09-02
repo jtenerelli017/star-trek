@@ -321,46 +321,94 @@ app.delete("/destroyPersonnel", (req, res) => {
   }
 });
 
-app.put("/updatePersonnel", (req, res) => {
+app.delete("/destroyStarship", (req, res) => {
   console.log("Request to " + req.url);
 
-  const id = req.query.id;
-  const first_name = req.query.first_name;
-  const last_name = req.query.last_name;
-  const gender = req.query.gender;
-  const species = req.query.species;
-  const affiliation = req.query.affiliation;
+  const registry = req.query.registry;
 
-  let g = null;
-  if (gender !== null) {
-    g = gender.toUpperCase();
-  }
-  if (!isLegal([id, first_name, last_name, gender, species, affiliation])) {
-    res.send("illegal");
-  } else if (
-    g.localeCompare("M") !== 0 &&
-    g.localeCompare("F") !== 0 &&
-    g.localeCompare("O") !== 0
-  ) {
-    res.send("illegal");
-  } else
-    db.query(
-      "UPDATE personnel SET first_name=?, last_name=?, gender=?, species=?, affiliation=? WHERE id=?",
-      [first_name, last_name, g, species, affiliation, id],
-      (err, result) => {
-        if (err) {
-          console.log(err);
-          res.send("unknown");
+  if (isLegal([String(registry)])) {
+    db.query("DELETE FROM starship_data WHERE registry=?", [registry], (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send("unknown");
+      } else {
+        if (result.affectedRows > 0) {
+          res.send("success");
         } else {
-          if (result.affectedRows > 0) {
-            res.send("success");
-          } else {
-            res.send("dne");
-          }
+          res.send("dne");
         }
       }
-    );
+    });
+  } else {
+    res.send("illegal");
+  }
 });
+
+app.delete("/destroyRoster", (req, res) => {
+  console.log("Request to " + req.url);
+
+  const starship_reg = req.query.starship_reg;
+  const personnel_id = req.query.personnel_id;
+  const date_start = req.query.date_start
+
+  if (isLegal([String(starship_reg), String(personnel_id), String(date_start)])) {
+    db.query("DELETE FROM starship_roster WHERE starship_reg=? AND personnel_id=? AND date_start=?", [starship_reg, personnel_id, date_start], (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send("unknown");
+      } else {
+        if (result.affectedRows > 0) {
+          res.send("success");
+        } else {
+          res.send("dne");
+        }
+      }
+    });
+  } else {
+    res.send("illegal");
+  }
+});
+
+// app.put("/updatePersonnel", (req, res) => {
+//   console.log("Request to " + req.url);
+
+//   const id = req.query.id;
+//   const first_name = req.query.first_name;
+//   const last_name = req.query.last_name;
+//   const gender = req.query.gender;
+//   const species = req.query.species;
+//   const affiliation = req.query.affiliation;
+
+//   let g = null;
+//   if (gender !== null) {
+//     g = gender.toUpperCase();
+//   }
+//   if (!isLegal([id, first_name, last_name, gender, species, affiliation])) {
+//     res.send("illegal");
+//   } else if (
+//     g.localeCompare("M") !== 0 &&
+//     g.localeCompare("F") !== 0 &&
+//     g.localeCompare("O") !== 0
+//   ) {
+//     res.send("illegal");
+//   } else
+//     db.query(
+//       "UPDATE personnel SET first_name=?, last_name=?, gender=?, species=?, affiliation=? WHERE id=?",
+//       [first_name, last_name, g, species, affiliation, id],
+//       (err, result) => {
+//         if (err) {
+//           console.log(err);
+//           res.send("unknown");
+//         } else {
+//           if (result.affectedRows > 0) {
+//             res.send("success");
+//           } else {
+//             res.send("dne");
+//           }
+//         }
+//       }
+//     );
+// });
 
 app.listen(port, () => {
   console.log("Server running on port 3001");
