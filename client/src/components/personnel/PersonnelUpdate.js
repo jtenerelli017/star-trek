@@ -1,28 +1,33 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import StatusMessage from "../StatusMessage";
 
-function PersonnelCreate() {
-  const [firstName, setFirstName] = useState(null);
-  const [lastName, setLastName] = useState(null);
-  const [gender, setGender] = useState(null);
-  const [species, setSpecies] = useState(null);
-  const [affiliation, setAffiliation] = useState(null);
+function PersonnelUpdate() {
+  const idRef = useRef();
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const genderRef = useRef();
+  const speciesRef = useRef();
+  const affiliationRef = useRef();
   const [statusNum, setStatusNum] = useState(0);
   // 0 = nothing
   // 1 = success
   // 2 = network error
   // 3 = user error
+  // 7 = data does not exist
+  // anything else = unknown error
 
-  const addPersonnel = () => {
-    Axios.post("/createPersonnel", {
-      first_name: firstName,
-      last_name: lastName,
-      gender: gender,
-      species: species,
-      affiliation: affiliation,
+  const updatePersonnel = () => {
+    Axios.put("/updatePersonnel", {
+      params: {
+        first_name: firstNameRef.current.value,
+        last_name: lastNameRef.current.value,
+        gender: genderRef.current.value,
+        species: speciesRef.current.value,
+        affiliation: affiliationRef.current.value,
+      }
     })
       .then((res) => {
         let result = res.data;
@@ -33,13 +38,10 @@ function PersonnelCreate() {
           for (let i = 0; i < forms.length; i++) {
             forms.item(i).value = "";
           }
-          setFirstName(null);
-          setLastName(null);
-          setGender(null);
-          setSpecies(null);
-          setAffiliation(null);
-        } else {
+        } else if (result.localeCompare("illegal") === 0){
           setStatusNum(3);
+        } else if (result.localeCompare("dne")){
+          setStatusNum(7);
         }
       })
       .catch((err) => {
@@ -62,59 +64,51 @@ function PersonnelCreate() {
       </p>
       <div id="prompts-container" className="align">
         <Form.Label className="prompt-label">
+          <b>Personnel ID</b>
+        </Form.Label>
+        <Form.Control
+          className="input"
+          ref={idRef}
+        />
+        <Form.Label className="prompt-label">
           <b>First Name</b>
         </Form.Label>
         <Form.Control
           className="input"
-          onChange={(event) => {
-            setFirstName(event.target.value);
-            setStatusNum(0);
-          }}
+          ref={firstNameRef}
         />
         <Form.Label className="prompt-label">
           <b>Last Name</b>
         </Form.Label>
         <Form.Control
           className="input"
-          onChange={(event) => {
-            setLastName(event.target.value);
-            setStatusNum(0);
-          }}
+          ref={lastNameRef}
         />
         <Form.Label className="prompt-label">
           <b>Gender</b>
         </Form.Label>
         <Form.Control
           className="input"
-          onChange={(event) => {
-            setGender(event.target.value);
-            setStatusNum(0);
-          }}
+          ref={genderRef}
         />
         <Form.Label className="prompt-label">
           <b>Species</b>
         </Form.Label>
         <Form.Control
           className="input"
-          onChange={(event) => {
-            setSpecies(event.target.value);
-            setStatusNum(0);
-          }}
+          ref={speciesRef}
         />
         <Form.Label className="prompt-label">
           <b>Affiliation</b>
         </Form.Label>
         <Form.Control
           className="input"
-          onChange={(event) => {
-            setAffiliation(event.target.value);
-            setStatusNum(0);
-          }}
+          ref={affiliationRef}
         />
       </div>
       <div id="add-item">
-        <Button variant="success" onClick={addPersonnel}>
-          Add Personnel
+        <Button variant="warning" onClick={updatePersonnel}>
+          Update Personnel
         </Button>
       </div>
       <StatusMessage statusNum={statusNum} />
@@ -122,4 +116,4 @@ function PersonnelCreate() {
   );
 }
 
-export default PersonnelCreate;
+export default PersonnelUpdate;

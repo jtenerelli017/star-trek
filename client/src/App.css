@@ -1,4 +1,4 @@
-/* TAGS */
+/* ELEMENTS */
 
 html {
   /* Display & Box Model */
@@ -8,14 +8,14 @@ html {
   background-color: black;
 }
 
-table, td, th {
-  /* Display & Box Model */
-  padding: 5px;
+table {
+  max-width: 700px;
+}
 
-  /* Text */
-  background-color: white;
-  border: 1px solid black;
-  text-align: center;
+tr {
+  /* Display & Box Model */
+  vertical-align: middle;
+  height: 45px;
 }
 
 /* CLASSES */
@@ -32,17 +32,30 @@ table, td, th {
   padding-bottom: 15px;
 }
 
+.header {
+  /* Color */
+  color: white;
+
+  /* Text */
+  text-align: center;
+}
+
 .instructions {
   /* Display & Box Model */
   max-width: 950px;
   padding-left: 20px;
   padding-right: 20px;
-  
+
   /* Color */
   color: lightgray;
 
   /* Text */
   text-align: center;
+}
+
+.personnel-read-table {
+  /* Display & Box Model */
+  display: flex;
 }
 
 .prompt-label {
@@ -77,7 +90,7 @@ table, td, th {
 #add-item {
   /* Display & Box Model */
   padding-top: 40px;
-  padding-bottom: 5px;
+  padding-bottom: 15px;
 }
 
 #app-container {
@@ -91,12 +104,6 @@ table, td, th {
   /* Display & Box Model */
   display: inline;
   padding-bottom: 10px;
-}
-
-#personnel-list {
-  display: flex;
-  padding-top: 5px;
-  padding-bottom: 5px;
 }
 
 #prompts-container {
@@ -114,25 +121,22 @@ table, td, th {
   background-repeat: repeat-y;
 }
 
-#s1 {
-  /* Color */
-  color: lightgreen;
-}
-
-#s2 {
-  /* Color */
-  color: lightpink;
-}
-
-#s3 {
-  /* Color */
-  color: lightcoral;
+#vignette {
+  /* Display & Box Model */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 #table-select-radio-container {
   /* Display & Box Model */
   display: inline;
   padding-bottom: 20px;
+}
+
+#test {
+  color: coral;
 }
 
 #title {

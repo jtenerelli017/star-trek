@@ -17,7 +17,7 @@ function RosterCreate() {
   // 3 = user error
   // 4 = data already exists
 
-  const addPersonnel = () => {
+  const addRoster = () => {
     Axios.post("/createRoster", {
       starship_reg: starshipReg,
       personnel_id: personnelId,
@@ -29,7 +29,6 @@ function RosterCreate() {
         let result = res.data;
         if (result.localeCompare("success") === 0) {
           setStatusNum(1);
-          console.log("Success");
           // clear input forms
           let forms = document.getElementsByClassName("input");
           for (let i = 0; i < forms.length; i++) {
@@ -42,11 +41,9 @@ function RosterCreate() {
           setReason(null);
         } else {
           setStatusNum(3);
-          console.log("Error");
         }
       })
       .catch((err) => {
-        console.log("Error");
         setStatusNum(2);
       });
   };
@@ -54,14 +51,15 @@ function RosterCreate() {
   return (
     <div id="personnel-container" className="align">
       <p className="instructions">
-        Create a starship roster entry here. Personnel ID and starship registries must already exist. Starting date must be unique
-        per personnel/registry pair. Ending date and reason can be empty.
-        Dates must be in "Star Date" format (i.e. 42117.3).
+        Create a starship roster entry here. Personnel ID and starship
+        registries must already exist. Starting date must be unique per
+        personnel/registry pair. Ending date and reason can be empty. Dates must
+        be in "Star Date" format (i.e. 42117.3).
       </p>
       <p className="instructions">
         Arguments cannot 1) be empty, 2) be more than 45 characters long, and/or
-        3) start with a SPACE (unless the field is allowed to be empty). Prohibited characters include: @ # $ % ^ & * ( )
-        [ ] {} ; : ' " / \ ,
+        3) start with a SPACE (unless the field is allowed to be empty).
+        Prohibited characters include: @ # $ % ^ & * ( ) [ ] {} ; : ' " / \ ,
       </p>
       <div id="prompts-container" className="align">
         <Form.Label className="prompt-label">
@@ -116,7 +114,7 @@ function RosterCreate() {
         />
       </div>
       <div id="add-item">
-        <Button variant="success" onClick={addPersonnel}>
+        <Button variant="success" onClick={addRoster}>
           Add Roster
         </Button>
       </div>

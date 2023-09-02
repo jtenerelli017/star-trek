@@ -1,8 +1,10 @@
-function PersonnelReadBio(personnelList) {
-  const l = personnelList.personnelList;
+import Padding from "./Padding";
+
+function PersonnelReadBios(props) {
+  const len = props.bios.length;
   return (
-    <div id="personnel-list">
-      <table>
+    <div className="personnel-read-table">
+      <table className="table">
         <caption className="table-caption">List of Personnel</caption>
         <tbody>
           <tr>
@@ -13,9 +15,9 @@ function PersonnelReadBio(personnelList) {
             <th>Species</th>
             <th>Affiliation</th>
           </tr>
-          {l.map((val, key) => {
+          {props.bios.map((val, key) => {
             return (
-              <tr key={key} onClick={() => console.log(val.id)}>
+              <tr key={key} onClick={() => props.getNewId(val.id)}>
                 <td>{val.id}</td>
                 <td>{val.first_name}</td>
                 <td>{val.last_name}</td>
@@ -25,10 +27,11 @@ function PersonnelReadBio(personnelList) {
               </tr>
             );
           })}
+          <Padding len={len} cols={6} />
         </tbody>
       </table>
     </div>
   );
 }
 
-export default PersonnelReadBio;
+export default PersonnelReadBios;

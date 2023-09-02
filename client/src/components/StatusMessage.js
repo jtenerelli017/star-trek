@@ -1,13 +1,57 @@
-function StatusMessage(statusNum) {
-  if (statusNum.statusNum === 0)
-    return (<></>);
-  if (statusNum.statusNum === 1)
-    return (<div><p className="status" id="s1">Success!</p></div>);
-  if (statusNum.statusNum === 2)
-    return (<div><p className="status" id="s2">ERROR: Attempt to connect to server failed. Check your connection and try again.</p></div>);
-  if (statusNum.statusNum === 3)
-    return (<div><p className="status" id="s3">ERROR: Invalid argument(s). Read the instructions above and try again.</p></div>);
-  return (<div><p className="status" id="s3">ERROR: Data already exists. Check your arguments and try again.</p></div>);
+function StatusMessage(props) {
+  const num = props.statusNum;
+  return num === 0 ? (
+    <></>
+  ) : num === 1 ? (
+    <div>
+      <p className="status" style={{ color: "lightgreen" }}>
+        Success!
+      </p>
+    </div>
+  ) : num === 2 ? (
+    <div>
+      <p className="status" style={{ color: "lightpink" }}>
+        ERROR: Attempt to connect to server failed. Check your connection and
+        try again.
+      </p>
+    </div>
+  ) : num === 3 ? (
+    <div>
+      <p className="status" style={{ color: "lightcoral" }}>
+        ERROR: Invalid argument(s). Read the instructions above and try again.
+      </p>
+    </div>
+  ) : num === 4 ? (
+    <div>
+      <p className="status" style={{ color: "lightcyan" }}>
+        No personnel entry exists in the database.
+      </p>
+    </div>
+  ) : num === 5 ? (
+    <div>
+      <p className="status" style={{ color: "coral" }}>
+        ERROR: Personnel entry no longer exists in the database.
+      </p>
+    </div>
+  ) : num === 6 ? (
+    <div>
+      <p className="status" style={{ color: "white" }}>
+        Loading...
+      </p>
+    </div>
+  ) : num === 7 ? (
+    <div>
+      <p className="status" style={{ color: "orangered" }}>
+        ERROR: Data with supplied argument does not exist.
+      </p>
+    </div>
+  ) : (
+    <div>
+      <p className="status" style={{ color: "red" }}>
+        ERROR: An unknown error has occurred.
+      </p>
+    </div>
+  );
 }
 
 export default StatusMessage;
